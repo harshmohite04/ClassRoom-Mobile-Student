@@ -5,7 +5,6 @@ import Image1 from '../../assets/svg/image1'
 export default function First() {
   return (
     <View style={styles.Background}>
-      <Text>App</Text>
       <View style={styles.container}>
         <Image1/>
       </View>
@@ -21,22 +20,24 @@ export default function First() {
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: '#FFFFFF'
-  },
-  container: {
-    flex: 1,  // Take up available space
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',  // Center horizontally
-    justifyContent: 'center', // Center vertically
-    paddingBottom :200
+    justifyContent: 'center'
+  },
+  container: {// Take up available space
+    alignItems: 'center',  // Center horizontally
+    justifyContent: 'center', // Center verticall
   },
   TextContainer: {
-    width: 50,
-    height : 50,
+    height : 166,
+    width : 150,
+    marginTop : 10
 
   },
   headingText : {
-    height: 50,
-    width: 60,
-    color : '#1F1F39'
+    color : '#1F1F39',
+    fontSize: 22,
+    fontWeight : 'bold',
+    textAlign: 'center'
   }
 })
