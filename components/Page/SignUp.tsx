@@ -81,6 +81,7 @@ export default SignUp;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   cont1: {
     flex: 1,
@@ -92,7 +93,9 @@ const styles = StyleSheet.create({
   cont2: {
     flex: 4,
     paddingHorizontal: 15 * scale,
-    paddingVertical: 10 * scale,
+    paddingVertical: 30 * scale,
+    backgroundColor:'#ffffff',
+
   },
   txt1: {
     fontSize: 32 * scale,
@@ -112,8 +115,9 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 10,
     borderWidth: 1,
-    marginHorizontal: 20 * scale,
     paddingHorizontal: 10 * scale,
+    width:'95%'
+
   },
   icon: {
     marginLeft: 10,

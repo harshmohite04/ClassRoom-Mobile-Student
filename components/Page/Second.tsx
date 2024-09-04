@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View,TouchableOpacity, Dimensions} from 'react-native';
-import React from 'react';
+import React,{useEffect} from 'react';
 import SecondImg from '../../assets/svg/image2';
 
 const {width} = Dimensions.get('window'); // Import this when giving doing Style
@@ -7,10 +7,15 @@ const scale = width / 320;                // Import this when giving doing Style
 
 
 const Second = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.push('Third')
+    }, 3000);
+  });
   return (
     <View style={styles.container}>
         <TouchableOpacity
-        onPress={()=>navigation.push('First')}>
+        onPress={()=>navigation.push('Third')}>
 
       <Text style={styles.txt3}>Skip</Text>
         </TouchableOpacity>
