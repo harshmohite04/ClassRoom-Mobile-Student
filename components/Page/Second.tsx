@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View,TouchableOpacity, Dimensions} from 'react-native';
 import React from 'react';
-
 import SecondImg from '../../assets/svg/image2';
 
 const {width} = Dimensions.get('window');
