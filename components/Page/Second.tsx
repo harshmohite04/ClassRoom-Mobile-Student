@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View,TouchableOpacity, Dimensions} from 'react-native';
 import React from 'react';
-
 import SecondImg from '../../assets/svg/image2';
 
-const {width} = Dimensions.get('window');
-const scale = width / 320;
+const {width} = Dimensions.get('window'); // Import this when giving doing Style
+const scale = width / 320;                // Import this when giving doing Style
+
+
 const Second = ({navigation}) => {
   return (
     <View style={styles.container}>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     color: '#000000',
     paddingVertical:10*scale,
     textAlign:'center',
-    paddingTop:30*scale
+    paddingTop:50*scale
   },
   txt2: {
     fontSize: 11 * scale,
@@ -53,7 +54,8 @@ const styles = StyleSheet.create({
     fontSize: 10 * scale,
     textAlign: 'right',
     paddingRight: 10 * scale,
-    textDecorationLine:'underline'
+    textDecorationLine:'underline',
+    color:'#000000'
 
   },
   middle:{
