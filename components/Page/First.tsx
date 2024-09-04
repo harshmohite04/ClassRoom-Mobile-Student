@@ -12,6 +12,10 @@ export default function First() {
         <Text style={styles.headingText}>
           Numerous free Trial courses
         </Text>
+        <Text style={styles.headingText2}>
+        Free courses for you to 
+        find your way to learning
+        </Text>
       </View>
     </View>
   )
@@ -39,5 +43,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight : 'bold',
     textAlign: 'center'
+  },
+  headingText2 : {
+    color : '#858597',
+    height : 201,
+    width : 160,
+    fontSize : 16,
+    marginBottom : 10
   }
 })
