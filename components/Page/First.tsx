@@ -1,85 +1,101 @@
-import { StyleSheet, Text, View, Image, Dimensions ,TouchableOpacity} from 'react-native'
-import React, { useEffect } from 'react'
-import Image1 from '../../assets/svg/image1'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme } from 'react-native';
+import React, { useEffect } from 'react';
+import Image1 from '../../assets/svg/image1';  // Light mode image
+import DarkImage1 from '../../assets/svg/darkImage1';  // Dark mode image
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const scale = width / 320;
 
-const First  = ({navigation}) =>  {
+const lightTheme = {
+  background: '#FFFFFF',
+  textPrimary: '#1F1F39',
+  textSecondary: '#858597',
+  skipText: '#1F1F39',
+};
+
+const darkTheme = {
+  background: '#1F1F39',
+  textPrimary: '#FFFFFF',
+  textSecondary: '#A9A9A9',
+  skipText: '#FFFFFF',
+};
+
+const First = ({ navigation }) => {
+  const colorScheme = useColorScheme();  
+  const isDarkMode = colorScheme === 'dark';
+  const colors = isDarkMode ? darkTheme : lightTheme;
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.push('Second')
+      navigation.push('Second');
     }, 3000);
-  });
+  }, [navigation]);
+
+  const ImageComponent = isDarkMode ? DarkImage1 : Image1;
+
   return (
-    <View style={styles.Background}>
+    <View style={[styles.Background, { backgroundColor: colors.background }]}>
       <TouchableOpacity
-      style={styles.skipButton}
-        onPress={()=>navigation.push('Second')}>
-      <Text style={styles.txt3}>Skip</Text>
-        </TouchableOpacity>
+        style={styles.skipButton}
+        onPress={() => navigation.push('Second')}>
+        <Text style={[styles.txt3, { color: colors.skipText }]}>Skip</Text>
+      </TouchableOpacity>
       <View style={styles.container}>
-        <Image1/>
+        <ImageComponent /> 
       </View>
       <View style={styles.TextContainer}>
-        <Text style={styles.headingText}>
+        <Text style={[styles.headingText, { color: colors.textPrimary }]}>
           Numerous free Trial courses
         </Text>
-        <Text style={styles.headingText2}>
-        Free courses for you to find your way to learning.
+        <Text style={[styles.headingText2, { color: colors.textSecondary }]}>
+          Free courses for you to find your way to learning.
         </Text>
       </View>
     </View>
-  )
+  );
 };
+
 export default First;
 
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',  // Center horizontally
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   skipButton: {
     position: 'absolute',
     top: 20 * scale,
     right: 20 * scale,
   },
-  container: {// Take up available space
-    padding : 10 * scale,
-    alignItems: 'center',  // Center horizontally
-    justifyContent: 'center', // Center verticall
+  container: {
+    padding: 10 * scale,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   TextContainer: {
-    height : 120 * scale,
-    width :  130 * scale,
-    marginTop : 10 * scale
-
+    height: 120 * scale,
+    width: 130 * scale,
+    marginTop: 10 * scale,
   },
-  headingText : {
-    color : '#1F1F39',
+  headingText: {
     fontSize: 18 * scale,
-    fontWeight : 'bold',
+    fontWeight: 'bold',
     textAlign: 'center',
-    paddingBottom : 8 * scale
+    paddingBottom: 8 * scale,
   },
-  headingText2 : {
-    color : '#858597',
-    height : 80 * scale,
-    width : 120 * scale,
-    fontSize : 12 * scale,
-    textAlign : 'center',
-    fontWeight : 'bold',
-    marginBottom  : 5 * scale,
-    paddingBottom : 10 * scale
+  headingText2: {
+    fontSize: 12 * scale,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 5 * scale,
+    paddingBottom: 10 * scale,
   },
   txt3: {
     fontSize: 10 * scale,
     textAlign: 'right',
     fontWeight: 'bold',
     paddingRight: 10 * scale,
-    textDecorationLine:'underline'
+    textDecorationLine: 'underline',
   },
-})
+});
