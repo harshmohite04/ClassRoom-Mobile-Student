@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image1 from '../../assets/svg/image1';  // Light mode image
 import DarkImage1 from '../../assets/svg/darkImage1';  // Dark mode image
 
@@ -24,9 +24,9 @@ const First = ({ navigation }) => {
   const colorScheme = useColorScheme();  
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
-
+  const timerRef = useRef(null);
   useEffect(() => {
-    setTimeout(() => {
+    timerRef.current =setTimeout(() => {
       navigation.push('Second');
     }, 3000);
   }, [navigation]);
@@ -37,7 +37,11 @@ const First = ({ navigation }) => {
     <View style={[styles.Background, { backgroundColor: colors.background }]}>
       <TouchableOpacity
         style={styles.skipButton}
-        onPress={() => navigation.push('Second')}>
+        onPress={() => {
+          navigation.push('Second')
+          clearTimeout(timerRef.current)
+          }
+        }>
         <Text style={[styles.txt3, { color: colors.skipText }]}>Skip</Text>
       </TouchableOpacity>
       <View style={styles.container}>

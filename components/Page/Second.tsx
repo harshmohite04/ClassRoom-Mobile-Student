@@ -1,9 +1,16 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, useColorScheme } from 'react-native';
-import React, { useEffect } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  useColorScheme,
+} from 'react-native';
+import React, {useEffect,useRef} from 'react';
 import SecondImg from '../../assets/svg/image2'; // Light mode image
 import DarkImage2 from '../../assets/svg/darkImage2';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 const scale = width / 320;
 
 const lightTheme = {
@@ -20,27 +27,34 @@ const darkTheme = {
   skipText: '#FFFFFF',
 };
 
-const Second = ({ navigation }) => {
-  const colorScheme = useColorScheme();  
+const Second = ({navigation}) => {
+  const colorScheme = useColorScheme();
+  const timerRef = useRef(null);
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
   const ImageComponent = isDarkMode ? DarkImage2 : SecondImg;
 
   useEffect(() => {
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       navigation.push('Third');
     }, 3000);
   }, [navigation]);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <TouchableOpacity onPress={() => navigation.push('Third')}>
-        <Text style={[styles.txt3, { color: colors.skipText }]}>Skip</Text>
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.push('Third');
+          clearTimeout(timerRef.current);
+        }}>
+        <Text style={[styles.txt3, {color: colors.skipText}]}>Skip</Text>
       </TouchableOpacity>
       <View style={styles.middle}>
-      <ImageComponent/>
-        <Text style={[styles.txt1, { color: colors.textPrimary }]}>Quick and easy learning</Text>
-        <Text style={[styles.txt2, { color: colors.textSecondary }]}>
+        <ImageComponent />
+        <Text style={[styles.txt1, {color: colors.textPrimary}]}>
+          Quick and easy learning
+        </Text>
+        <Text style={[styles.txt2, {color: colors.textSecondary}]}>
           Easy and fast learning at any time to help you improve various skills
         </Text>
       </View>
