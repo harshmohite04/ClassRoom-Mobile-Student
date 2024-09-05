@@ -4,33 +4,69 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  useColorScheme
 } from 'react-native';
-import React,{useEffect} from 'react';
-import Image3 from '../../assets/svg/image3';
+import React from 'react';
+import Image3 from '../../assets/svg/image3'; // Light mode image
+import DarkImage3 from '../../assets/svg/darkImage3'; // Dark mode image
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const scale = width / 320;
 
-const Third = ({navigation}) => {
+const lightTheme = {
+  background: '#FFFFFF',
+  textPrimary: '#1F1F39',
+  textSecondary: '#858597',
+  skipText: '#1F1F39',
+  buttonPrimary: '#3D5CFF',
+  buttonSecondary: '#000000',
+  buttonOutline: '#3D5CFF',
+};
+
+const darkTheme = {
+  background: '#1F1F39',
+  textPrimary: '#FFFFFF',
+  textSecondary: '#A9A9A9',
+  skipText: '#FFFFFF',
+  buttonPrimary: '#4A5AFF',
+  buttonSecondary: '#FFFFFF',
+  buttonOutline: '#4A5AFF',
+};
+
+const Third = ({ navigation }) => {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const colors = isDarkMode ? darkTheme : lightTheme;
+  const ImageComponent = isDarkMode ? DarkImage3 : Image3;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.imageCard}>
-        <Image3 />
-        <Text style={styles.headingText1}>Create your own study plan</Text>
-        <Text style={styles.headingText2}>
+        <ImageComponent />
+        <Text style={[styles.headingText1, { color: colors.textPrimary }]}>
+          Create your own study plan
+        </Text>
+        <Text style={[styles.headingText2, { color: colors.textSecondary }]}>
           Study according to the study plan, make study more motivated
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity 
-          onPress={()=>{
-            navigation.push('SignUp')
-          }}
-          style={styles.button1}>
-            <Text style={styles.buttonText1}>Sign Up</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.push('SignUp');
+            }}
+            style={[styles.button1, { backgroundColor: colors.buttonPrimary }]}
+          >
+            <Text style={[styles.buttonText1, { color: '#FFFFFF' }]}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button2}>
-            <Text style={styles.buttonText2}>Log In</Text>
+          <TouchableOpacity
+            style={[
+              styles.button2,
+              { borderColor: colors.buttonOutline },
+            ]}
+          >
+            <Text style={[styles.buttonText2, { color: colors.buttonSecondary }]}>
+              Log In
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -43,7 +79,6 @@ export default Third;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignContent: 'center',
     paddingRight: 15 * scale,
@@ -56,16 +91,14 @@ const styles = StyleSheet.create({
   },
   headingText1: {
     fontSize: 17 * scale,
-    color: '#1F1F39',
     fontWeight: 'bold',
     marginBottom: 5 * scale,
   },
   headingText2: {
-    color: '#858597',
     fontSize: 14 * scale,
     fontWeight: 'bold',
-    width:'90%',
-    textAlign:'center'
+    width: '90%',
+    textAlign: 'center',
   },
   buttonContainer: {
     paddingTop: 10 * scale,
@@ -76,26 +109,22 @@ const styles = StyleSheet.create({
     marginLeft: 10 * scale,
   },
   button1: {
-    backgroundColor: '#3D5CFF',
     paddingVertical: 10 * scale,
     paddingHorizontal: 20 * scale,
     borderRadius: 8 * scale,
   },
   button2: {
     borderWidth: 3,
-    borderColor: '#3D5CFF',
     paddingVertical: 10 * scale,
     paddingHorizontal: 20 * scale,
     borderRadius: 10 * scale,
     marginLeft: 20 * scale,
   },
   buttonText1: {
-    color: '#FFFFFF',
     fontSize: 14 * scale,
     fontWeight: 'bold',
   },
   buttonText2: {
-    color: '#000000',
     fontSize: 14 * scale,
     fontWeight: 'bold',
     textAlign: 'center',
