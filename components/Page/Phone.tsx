@@ -12,6 +12,7 @@ import PhoneImg from '../../assets/svg/phone1';
 import DarkPhone1 from '../../assets/svg/DarkPhone1';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
+import { Formik } from 'formik';
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
@@ -36,16 +37,15 @@ const darkTheme = {
   inputBorder: '#FFFFFF',
 };
 
-const SignUp = () => {
+const Phone = () => {
   const colorScheme = useColorScheme();  
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
   const PhoneIcon = isDarkMode ? DarkPhone1 : PhoneImg;
 
   const phoneSchema = Yup.object().shape({
-    phoneLength: Yup.number()
-      .min(10, "Must be 10 numbers")
-      .max(10, "Must be 10 numbers")
+    phoneLength: Yup.string()
+      .length(10, "Must be 10 numbers")
       .required("Required Field"),
   });
   
@@ -56,31 +56,41 @@ const SignUp = () => {
       <Text style={[styles.txt1, { color: colors.textPrimary }]}>Continue with Phone</Text>
       <PhoneIcon />
       <View style={styles.container2}>
-        <Text style={[styles.phoneText, { color: colors.textSecondary }]}>
-          Enter Your Phone Number
-        </Text>
-        <TextInput
-          style={[
-            styles.input,
-            { borderColor: colors.inputBorder, color: colors.textPrimary }
-          ]}
-          onChangeText={setPhone}
-          value={phone}
-          placeholder="9356835871"
-          placeholderTextColor={colors.textSecondary}
-          keyboardType="numeric"
-        />
-        <TouchableOpacity>
-          <View style={[styles.getOtp, { backgroundColor: colors.buttonPrimary }]}>
-            <Text style={styles.getOtptxt}>Get OTP</Text>
-          </View>
-        </TouchableOpacity>
+        <Formik
+          initialValues={{ phoneLength: '' }}
+          validationSchema={phoneSchema}
+          onSubmit={values => console.log(values)}
+        >
+          {({ values, handleChange, handleSubmit, errors, touched }) => (
+            <View>
+              <Text style={[styles.phoneText, { color: colors.textSecondary }]}>
+                Enter Your Phone Number
+              </Text>
+              <TextInput
+                onChangeText={handleChange('phoneLength')}
+                value={values.phoneLength}
+                placeholder="93568365221"
+                keyboardType='numeric'
+                placeholderTextColor={colors.inputBorder}
+                style={styles.input}
+              />
+              {errors.phoneLength && touched.phoneLength && (
+                <Text style={{ color: 'red' }}>{errors.phoneLength}</Text>
+              )}
+              <TouchableOpacity onPress={handleSubmit} style={styles.center}>
+                <View style={[styles.getOtp, { backgroundColor: colors.buttonPrimary }]}>
+                  <Text style={styles.getOtptxt}>Get OTP</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          )}
+        </Formik>
       </View>
     </SafeAreaView>
   );
 };
 
-export default SignUp;
+export default Phone;
 
 const styles = StyleSheet.create({
   container: {
@@ -112,10 +122,15 @@ const styles = StyleSheet.create({
     borderRadius: 10 * scale,
     paddingVertical: 10 * scale,
     paddingHorizontal: 20 * scale,
+    width:'40%',
+    alignItems:'center'
   },
   getOtptxt: {
     color: '#FFFFFF',
     fontSize: 12 * scale,
     fontWeight: '600',
   },
+  center:{
+    alignItems:'center'
+  }
 });
