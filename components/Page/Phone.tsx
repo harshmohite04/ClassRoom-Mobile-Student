@@ -50,15 +50,31 @@ const Phone = ({navigation,route}) => {
 
   const handleSubmit = async (values) => {
     try {
-      const phoneNumber = values.phoneLength
-      const response = await fetch(`http://localhost:3000/otp?number=${phoneNumber}`);
-      const data = await response.text(); // or response.json() if your server returns JSON
+      const phoneNumber = values.phoneLength;
+      const url = `https://b4bc6a6c-0b21-46b7-8efa-b69fb222c32c-00-fxdi9qigi9jz.sisko.replit.dev:3000/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
+      console.log("heelo")
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`HTTP Error: ${response.status} - ${errorMessage}`);
+      }
+      
+      console.log("heelo")
+      const data = await response.json();
       console.log(data);
-      navigation.push('Phone',{phoneNumber})
+      console.log(phoneNumber);
+      navigation.push('Phone', { phoneNumber });
     } catch (error) {
-      console.error("Error fetching OTP:", error);
+      console.error('Error fetching OTP:', error.message || error);
     }
   };
+  
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -66,7 +82,7 @@ const Phone = ({navigation,route}) => {
       <PhoneIcon />
       <View style={styles.container2}>
         <Formik
-          initialValues={{ phoneLength: '' }}
+          initialValues={{ phoneLength: '9356836581' }}
           validationSchema={phoneSchema}
           onSubmit={handleSubmit}
         >
