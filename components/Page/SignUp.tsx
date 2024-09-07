@@ -25,7 +25,6 @@ const lightTheme = {
   buttonOutline: '#3D5CFF',
   inputBorder: '#000000',
 };
-
 const darkTheme = {
   background: '#1F1F39',
   textPrimary: '#FFFFFF',
