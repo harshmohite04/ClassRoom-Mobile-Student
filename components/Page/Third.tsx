@@ -52,7 +52,7 @@ const Third = ({ navigation }) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {
-              navigation.push('SignUp');
+              navigation.push('Phone');
             }}
             style={[styles.button1, { backgroundColor: colors.buttonPrimary }]}
           >

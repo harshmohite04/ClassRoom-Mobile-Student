@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import First from './components/Page/First'
 import Second from './components/Page/Second';
-import SignUp from './components/Page/SignUp';
+import Phone from './components/Page/Phone';
 import Third from './components/Page/Third';
 
 const Stack = createStackNavigator();
@@ -15,11 +15,11 @@ const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="First" screenOptions={{headerShown:false}}> 
+    <Stack.Navigator initialRouteName="Phone" screenOptions={{headerShown:false}}> 
       <Stack.Screen name ="First" component={First} />
       <Stack.Screen name ="Second" component={Second} />
       <Stack.Screen name ="Third" component={Third} />
-      <Stack.Screen name ="SignUp" component={SignUp} />
+      <Stack.Screen name ="Phone" component={Phone} />
     </Stack.Navigator>
     </NavigationContainer>
 
