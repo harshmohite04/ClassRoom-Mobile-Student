@@ -37,7 +37,7 @@ const darkTheme = {
   inputBorder: '#FFFFFF',
 };
 
-const Phone = () => {
+const Phone = ({navigation,route}) => {
   const colorScheme = useColorScheme();  
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
@@ -48,8 +48,18 @@ const Phone = () => {
       .length(10, "Must be 10 numbers")
       .required("Required Field"),
   });
-  
-  const [phone, setPhone] = useState('');
+
+  const handleSubmit = async (values) => {
+    try {
+      const phoneNumber = values.phoneLength
+      const response = await fetch(`http://localhost:3000/otp?number=${phoneNumber}`);
+      const data = await response.text(); // or response.json() if your server returns JSON
+      console.log(data);
+      navigation.push('Phone',{phoneNumber})
+    } catch (error) {
+      console.error("Error fetching OTP:", error);
+    }
+  };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -59,11 +69,11 @@ const Phone = () => {
         <Formik
           initialValues={{ phoneLength: '' }}
           validationSchema={phoneSchema}
-          onSubmit={values => console.log(values)}
+          onSubmit={handleSubmit}
         >
           {({ values, handleChange, handleSubmit, errors, touched }) => (
             <View>
-              <Text style={[styles.phoneText, { color: colors.textSecondary }]}>
+              <Text style={[styles.phoneText, { color: colors.textPrimary }]}>
                 Enter Your Phone Number
               </Text>
               <TextInput
@@ -71,7 +81,7 @@ const Phone = () => {
                 value={values.phoneLength}
                 placeholder="93568365221"
                 keyboardType='numeric'
-                placeholderTextColor={colors.inputBorder}
+                placeholderTextColor='#858597'
                 style={styles.input}
               />
               {errors.phoneLength && touched.phoneLength && (
@@ -79,7 +89,7 @@ const Phone = () => {
               )}
               <TouchableOpacity onPress={handleSubmit} style={styles.center}>
                 <View style={[styles.getOtp, { backgroundColor: colors.buttonPrimary }]}>
-                  <Text style={styles.getOtptxt}>Get OTP</Text>
+                  <Text style={styles.getOtptxt}>Continue</Text>
                 </View>
               </TouchableOpacity>
             </View>
