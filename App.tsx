@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="NoVideo" screenOptions={{headerShown:false}}> 
+    <Stack.Navigator initialRouteName="Phone" screenOptions={{headerShown:false}}> 
       <Stack.Screen name ="First" component={First} />
       <Stack.Screen name ="Second" component={Second} />
       <Stack.Screen name ="Third" component={Third} />
