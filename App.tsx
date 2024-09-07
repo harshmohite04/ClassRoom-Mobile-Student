@@ -11,18 +11,25 @@ import Third from './components/Page/Third';
 import Otp from './components/Page/Otp';
 
 
+import NotiFy from './components/Page/NoNotiFy';
+import NoNet from './components/Page/NoNetwork';
+import NoVideo from './components/Page/NoVideos'
 const Stack = createStackNavigator();
 
  function App() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Otp" screenOptions={{headerShown:false}}> 
+    <Stack.Navigator initialRouteName="NoVideo" screenOptions={{headerShown:false}}> 
       <Stack.Screen name ="First" component={First} />
       <Stack.Screen name ="Second" component={Second} />
       <Stack.Screen name ="Third" component={Third} />
       <Stack.Screen name ="Phone" component={Phone} />
       <Stack.Screen name ="Otp" component={Otp} />
+      <Stack.Screen name ="Notify" component={NotiFy} />
+      <Stack.Screen name ="NoNet" component={NoNet} />
+      <Stack.Screen name ="NoVideo" component={NoVideo} />
+
     </Stack.Navigator>
     </NavigationContainer>
 

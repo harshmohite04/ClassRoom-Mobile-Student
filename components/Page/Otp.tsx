@@ -38,7 +38,6 @@ const Otp = ({navigation,route}) => {
         codeInputHighlightStyle={{
             borderColor:'2ab12f'
         }}
-
         onCodeFilled={
             (code)=>{
                 console.log(`Code is ${code}`)
