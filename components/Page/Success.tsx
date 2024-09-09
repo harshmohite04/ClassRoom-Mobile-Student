@@ -21,38 +21,35 @@ const darkTheme = {
   buttonText: '#FFFFFF',
 };
 
-const Success = () => {
-  const colorScheme = useColorScheme(); // Get the system color scheme (dark or light)
+const Success = ({ navigation }) => {
+  const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
   return (
-    // <View style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#1F1F39' : '#FFFFFF' }]}>
-      <View style={[styles.middleContainer, { backgroundColor: theme.background }]}>
-        <View style={styles.ImageCard}>
-          <Image1 />
-        </View>
-        <Text style={[styles.txt1, { color: theme.textPrimary }]}>Success</Text>
-        <Text style={[styles.txt2, { color: theme.textSecondary }]}>
-          Congratulations, you have
-          completed your registration!
-        </Text>
-
-        <TouchableOpacity style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]}>
-          <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
-        </TouchableOpacity>
+    <View style={[styles.middleContainer, { backgroundColor: theme.background }]}>
+      <View style={styles.ImageCard}>
+        <Image1 />
       </View>
-      //  </View>
+      <Text style={[styles.txt1, { color: theme.textPrimary }]}>Success</Text>
+      <Text style={[styles.txt2, { color: theme.textSecondary }]}>
+        Congratulations, you have completed your registration!
+      </Text>
+
+      <TouchableOpacity
+        style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]}
+        onPress={() => {
+          navigation.navigate('Home')}
+      }  
+      >
+        <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 export default Success;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   middleContainer: {
     height: 250 * scale,
     width: 250 * scale,

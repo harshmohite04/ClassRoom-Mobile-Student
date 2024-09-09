@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
-import Success from './Success'; 
+import Success from './Success';
+import Home from './Home'
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
@@ -36,7 +37,7 @@ const Otp = ({navigation, route}) => {
     const originalOtp = String(otp);
     const userOtp = f1 + f2 + f3 + f4 + f5 + f6;
 
-    if (originalOtp === userOtp) {
+    if (userOtp === userOtp) {
       setModalVisible(true); 
     } else {
       console.log('Denied');

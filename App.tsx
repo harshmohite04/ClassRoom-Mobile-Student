@@ -17,6 +17,8 @@ import NoVideo from './components/Page/NoVideos';
 import Success from './components/Page/Success';
 import Account from './components/Page/Account';
 import LoginPage from './components/Page/LoginPage';
+import Home from './components/Page/Home';
+
 const Stack = createStackNavigator();
 
  function App() {
@@ -35,8 +37,7 @@ const Stack = createStackNavigator();
       <Stack.Screen name ="Success" component={Success} />
       <Stack.Screen name ="Account" component={Account} />
       <Stack.Screen name ="Login" component={LoginPage} />
-
-
+      <Stack.Screen name ="Home" component={Home} />
     </Stack.Navigator>
     </NavigationContainer>
 
