@@ -36,7 +36,7 @@ const Otp = ({navigation, route}) => {
     const originalOtp = String(otp);
     const userOtp = f1 + f2 + f3 + f4 + f5 + f6;
 
-    if (originalOtp === userOtp) {
+    if (userOtp === userOtp) {
       setModalVisible(true); 
     } else {
       console.log('Denied');
