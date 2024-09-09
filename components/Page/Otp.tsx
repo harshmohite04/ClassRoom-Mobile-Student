@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
-import Success from './Success'; 
+import Success from './Success';
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
@@ -163,16 +163,14 @@ const Otp = ({navigation, route}) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalBackground}>
-          <ImageBackground
-            style={styles.blurBackground}
-            blurRadius={20}>
             <Success />
             <TouchableOpacity
               style={styles.closeModalButton}
-              onPress={() => setModalVisible(false)}>
-              <Text style={styles.closeModalText}>Close</Text>
+              onPress={() => {setModalVisible(false)
+                navigation.push("Home")
+              }}>
+              <Text style={styles.closeModalText}>Done</Text>
             </TouchableOpacity>
-          </ImageBackground>
         </View>
       </Modal>
     </View>
@@ -233,7 +231,7 @@ const styles = StyleSheet.create({
   modalBackground: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems:'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   blurBackground: {
@@ -243,7 +241,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   closeModalButton: {
-    marginTop: 20 * scale,
+    marginTop: 10 * scale,
     backgroundColor: '#3D5CFF',
     paddingVertical: 10 * scale,
     paddingHorizontal: 50 * scale,

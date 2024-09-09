@@ -21,7 +21,7 @@ const darkTheme = {
   buttonText: '#FFFFFF',
 };
 
-const Success = () => {
+const Success = ({navigation}) => {
   const colorScheme = useColorScheme(); // Get the system color scheme (dark or light)
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
@@ -37,9 +37,9 @@ const Success = () => {
           completed your registration!
         </Text>
 
-        <TouchableOpacity style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]}>
-          <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]} >
+          <Text style={[styles.doneButtonText, { color: theme.buttonText }]} onPress={()=>{history.push('./Home.tsx')}}>Done</Text>
+        </TouchableOpacity> */}
       </View>
       //  </View>
   );
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   middleContainer: {
-    height: 250 * scale,
-    width: 250 * scale,
+    height: '25%',
+    width: '75%',
     borderRadius: 12 * scale,
     alignItems: 'center',
     justifyContent: 'space-between',
