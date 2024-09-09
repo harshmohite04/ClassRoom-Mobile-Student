@@ -15,14 +15,15 @@ import NotiFy from './components/Page/NoNotiFy';
 import NoNet from './components/Page/NoNetwork';
 import NoVideo from './components/Page/NoVideos';
 import Success from './components/Page/Success';
-import Account from './components/Page/Account'
+import Account from './components/Page/Account';
+import LoginPage from './components/Page/LoginPage';
 const Stack = createStackNavigator();
 
  function App() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Third" screenOptions={{headerShown:false}}> 
+    <Stack.Navigator initialRouteName="First" screenOptions={{headerShown:false}}> 
       <Stack.Screen name ="First" component={First} />
       <Stack.Screen name ="Second" component={Second} />
       <Stack.Screen name ="Third" component={Third} />
@@ -33,6 +34,8 @@ const Stack = createStackNavigator();
       <Stack.Screen name ="NoVideo" component={NoVideo} />
       <Stack.Screen name ="Success" component={Success} />
       <Stack.Screen name ="Account" component={Account} />
+      <Stack.Screen name ="Login" component={LoginPage} />
+
 
     </Stack.Navigator>
     </NavigationContainer>
