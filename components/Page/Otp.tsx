@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
-import OTPInputView from '@twotalltotems/react-native-otp-input';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 const Otp = ({navigation, route}) => {
@@ -30,7 +29,12 @@ const Otp = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleBar}>
+        <TouchableOpacity
+        onPress={()=>{navigation.goBack()}}
+        style={{width:20*scale,height:20*scale}}>
+
         <Close />
+        </TouchableOpacity>
         <Text style={styles.txt1}>Verify Phone</Text>
       </View>
 
