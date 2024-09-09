@@ -6,11 +6,10 @@ import Search from '../../assets/svg/SearchButton'
 import Course from '../../assets/svg/course'
 import Message from '../../assets/svg/MessageButton'
 import Acc_pic from '../../assets/svg/Acc_ICON'
-
+import home_dark from '../../assets/svg/Home_icon(Dark)'
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
-
 
 const Account = () => {
   return (
@@ -61,7 +60,7 @@ const Account = () => {
                 <Message />
             </TouchableOpacity>
             <TouchableOpacity style={styles.BottomBarItem}>
-                <Acc_pic />
+                <Acc_pic /> 
             </TouchableOpacity>
         </View>
     </View>
