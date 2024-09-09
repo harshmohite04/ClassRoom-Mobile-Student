@@ -14,10 +14,10 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  background: '#2F2F42', // Updated background for the middle container in dark mode
+  background: '#2F2F42',
   textPrimary: '#FFFFFF',
   textSecondary: '#A9A9A9',
-  buttonBackground: '#3D5CFF', // Blue button in dark theme
+  buttonBackground: '#3D5CFF', 
   buttonText: '#FFFFFF',
 };
 
@@ -26,7 +26,7 @@ const Success = () => {
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
   return (
-    <View style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#1F1F39' : '#797988' }]}>
+    // <View style={[styles.container, { backgroundColor: colorScheme === 'dark' ? '#1F1F39' : '#FFFFFF' }]}>
       <View style={[styles.middleContainer, { backgroundColor: theme.background }]}>
         <View style={styles.ImageCard}>
           <Image1 />
@@ -41,7 +41,7 @@ const Success = () => {
           <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
         </TouchableOpacity>
       </View>
-    </View>
+      //  </View>
   );
 };
 

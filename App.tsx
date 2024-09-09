@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="First" screenOptions={{headerShown:false}}> 
+    <Stack.Navigator initialRouteName="Otp" screenOptions={{headerShown:false}}> 
       <Stack.Screen name ="First" component={First} />
       <Stack.Screen name ="Second" component={Second} />
       <Stack.Screen name ="Third" component={Third} />

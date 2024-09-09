@@ -5,18 +5,18 @@ import {
   TextInput,
   Text,
   View,
+  Modal,
+  ImageBackground,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
+import Success from './Success'; 
+
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
 const Otp = ({navigation, route}) => {
-  // Safely accessing phoneNumber and otp from route.params
   const { phoneNumber = '', otp = '' } = route.params || {};
-
-  console.log(otp);
-
   const et1 = useRef();
   const et2 = useRef();
   const et3 = useRef();
@@ -30,15 +30,28 @@ const Otp = ({navigation, route}) => {
   const [f4, setF4] = useState('');
   const [f5, setF5] = useState('');
   const [f6, setF6] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleOtpVerification = () => {
+    const originalOtp = String(otp);
+    const userOtp = f1 + f2 + f3 + f4 + f5 + f6;
+
+    if (originalOtp === userOtp) {
+      setModalVisible(true); 
+    } else {
+      console.log('Denied');
+    }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.titleBar}>
         <TouchableOpacity
-        onPress={()=>{navigation.goBack()}}
-        style={{width:20*scale,height:20*scale}}>
-
-        <Close />
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{width: 20 * scale, height: 20 * scale}}>
+          <Close />
         </TouchableOpacity>
         <Text style={styles.txt1}>Verify Phone</Text>
       </View>
@@ -57,11 +70,7 @@ const Otp = ({navigation, route}) => {
           value={f1}
           onChangeText={txt => {
             setF1(txt);
-            if (txt.length == 1) {
-              et2.current.focus();
-            } else if (txt.length <= 0) {
-              et1.current.focus();
-            }
+            if (txt.length === 1) et2.current.focus();
           }}
         />
         <TextInput
@@ -75,11 +84,7 @@ const Otp = ({navigation, route}) => {
           value={f2}
           onChangeText={txt => {
             setF2(txt);
-            if (txt.length == 1) {
-              et3.current.focus();
-            } else if (txt.length <= 0) {
-              et1.current.focus();
-            }
+            if (txt.length === 1) et3.current.focus();
           }}
         />
         <TextInput
@@ -93,11 +98,7 @@ const Otp = ({navigation, route}) => {
           value={f3}
           onChangeText={txt => {
             setF3(txt);
-            if (txt.length == 1) {
-              et4.current.focus();
-            } else if (txt.length <= 0) {
-              et2.current.focus();
-            }
+            if (txt.length === 1) et4.current.focus();
           }}
         />
         <TextInput
@@ -111,11 +112,7 @@ const Otp = ({navigation, route}) => {
           value={f4}
           onChangeText={txt => {
             setF4(txt);
-            if (txt.length == 1) {
-              et5.current.focus();
-            } else if (txt.length <= 0) {
-              et3.current.focus();
-            }
+            if (txt.length === 1) et5.current.focus();
           }}
         />
         <TextInput
@@ -129,11 +126,7 @@ const Otp = ({navigation, route}) => {
           value={f5}
           onChangeText={txt => {
             setF5(txt);
-            if (txt.length == 1) {
-              et6.current.focus();
-            } else if (txt.length <= 0) {
-              et4.current.focus();
-            }
+            if (txt.length === 1) et6.current.focus();
           }}
         />
         <TextInput
@@ -147,11 +140,6 @@ const Otp = ({navigation, route}) => {
           value={f6}
           onChangeText={txt => {
             setF6(txt);
-            if (txt.length == 1) {
-              et6.current.focus();
-            } else if (txt.length <= 0) {
-              et5.current.focus();
-            }
           }}
         />
       </View>
@@ -161,29 +149,32 @@ const Otp = ({navigation, route}) => {
           styles.btn,
           {
             backgroundColor:
-              f1 !== '' && f2 !== '' && f3 !== '' && f4 !== ''&& f5 !== ''&& f6 !== '' ? 'blue' : '#949494',
+              f1 && f2 && f3 && f4 && f5 && f6 ? 'blue' : '#949494',
           },
         ]}
-        disabled={
-          f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' && f5 !== ''&& f6 !== '' ? false : true
-        }
-        onPress={() => {
-          const originalOtp = String(otp);
-          const userOtp = f1 + f2 + f3 + f4 + f5+f6;
-
-          // console.log(`This is userOTP${userOtp}`);
-          // console.log(`This is userOTP${typeof(userOtp)}`);
-          // console.log(`This is ORIGINAL otp${originalOtp}`);
-          // console.log(`This is originalOtp${typeof(originalOtp)}`);
-
-          if (originalOtp === userOtp) {
-            console.log('Access');
-          } else {
-            console.log('Denied');
-          }
-        }}>
+        disabled={!f1 || !f2 || !f3 || !f4 || !f5 || !f6}
+        onPress={handleOtpVerification}>
         <Text style={styles.txt3}>Verify</Text>
       </TouchableOpacity>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}>
+        <View style={styles.modalBackground}>
+          <ImageBackground
+            style={styles.blurBackground}
+            blurRadius={20}>
+            <Success />
+            <TouchableOpacity
+              style={styles.closeModalButton}
+              onPress={() => setModalVisible(false)}>
+              <Text style={styles.closeModalText}>Close</Text>
+            </TouchableOpacity>
+          </ImageBackground>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -238,5 +229,29 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 15 * scale,
     fontWeight: '500',
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  blurBackground: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  closeModalButton: {
+    marginTop: 20 * scale,
+    backgroundColor: '#3D5CFF',
+    paddingVertical: 10 * scale,
+    paddingHorizontal: 50 * scale,
+    borderRadius: 10 * scale,
+  },
+  closeModalText: {
+    color: '#FFFFFF',
+    fontSize: 16 * scale,
+    fontWeight: '600',
   },
 });
