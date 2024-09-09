@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
-import OTPInputView from '@twotalltotems/react-native-otp-input';
-
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -23,16 +21,25 @@ const Otp = ({navigation, route}) => {
   const et2 = useRef();
   const et3 = useRef();
   const et4 = useRef();
+  const et5 = useRef();
+  const et6 = useRef();
 
   const [f1, setF1] = useState('');
   const [f2, setF2] = useState('');
   const [f3, setF3] = useState('');
   const [f4, setF4] = useState('');
+  const [f5, setF5] = useState('');
+  const [f6, setF6] = useState('');
 
   return (
     <View style={styles.container}>
       <View style={styles.titleBar}>
+        <TouchableOpacity
+        onPress={()=>{navigation.goBack()}}
+        style={{width:20*scale,height:20*scale}}>
+
         <Close />
+        </TouchableOpacity>
         <Text style={styles.txt1}>Verify Phone</Text>
       </View>
 
@@ -105,9 +112,45 @@ const Otp = ({navigation, route}) => {
           onChangeText={txt => {
             setF4(txt);
             if (txt.length == 1) {
-              et4.current.focus();
+              et5.current.focus();
             } else if (txt.length <= 0) {
               et3.current.focus();
+            }
+          }}
+        />
+        <TextInput
+          ref={et5}
+          style={[
+            styles.inputView,
+            {borderColor: f5.length >= 1 ? 'blue' : '#000'},
+          ]}
+          keyboardType="number-pad"
+          maxLength={1}
+          value={f5}
+          onChangeText={txt => {
+            setF5(txt);
+            if (txt.length == 1) {
+              et6.current.focus();
+            } else if (txt.length <= 0) {
+              et4.current.focus();
+            }
+          }}
+        />
+        <TextInput
+          ref={et6}
+          style={[
+            styles.inputView,
+            {borderColor: f6.length >= 1 ? 'blue' : '#000'},
+          ]}
+          keyboardType="number-pad"
+          maxLength={1}
+          value={f6}
+          onChangeText={txt => {
+            setF6(txt);
+            if (txt.length == 1) {
+              et6.current.focus();
+            } else if (txt.length <= 0) {
+              et5.current.focus();
             }
           }}
         />
@@ -118,17 +161,20 @@ const Otp = ({navigation, route}) => {
           styles.btn,
           {
             backgroundColor:
-              f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' ? 'blue' : '#949494',
+              f1 !== '' && f2 !== '' && f3 !== '' && f4 !== ''&& f5 !== ''&& f6 !== '' ? 'blue' : '#949494',
           },
         ]}
         disabled={
-          f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' ? false : true
+          f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' && f5 !== ''&& f6 !== '' ? false : true
         }
         onPress={() => {
-          const originalOtp = otp;
-          const userOtp = f1 + f2 + f3 + f4;
+          const originalOtp = String(otp);
+          const userOtp = f1 + f2 + f3 + f4 + f5+f6;
 
-          console.log(userOtp);
+          // console.log(`This is userOTP${userOtp}`);
+          // console.log(`This is userOTP${typeof(userOtp)}`);
+          // console.log(`This is ORIGINAL otp${originalOtp}`);
+          // console.log(`This is originalOtp${typeof(originalOtp)}`);
 
           if (originalOtp === userOtp) {
             console.log('Access');
