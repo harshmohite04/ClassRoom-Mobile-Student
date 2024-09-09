@@ -10,11 +10,12 @@ import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
+
 const Otp = ({navigation, route}) => {
-  const {phoneNumber,otp} = route.params
+  // Safely accessing phoneNumber and otp from route.params
+  const { phoneNumber = '', otp = '' } = route.params || {};
 
-  console.log(otp)
-
+  console.log(otp);
 
   const et1 = useRef();
   const et2 = useRef();
@@ -39,6 +40,7 @@ const Otp = ({navigation, route}) => {
       </View>
 
       <Text style={styles.txt2}>Code is sent to {phoneNumber}</Text>
+
       <View style={styles.layout}>
         <TextInput
           ref={et1}
@@ -113,22 +115,29 @@ const Otp = ({navigation, route}) => {
           }}
         />
       </View>
+
       <TouchableOpacity
-        style={[styles.btn,{backgroundColor: f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' ? "blue":'#949494'}]}
+        style={[
+          styles.btn,
+          {
+            backgroundColor:
+              f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' ? 'blue' : '#949494',
+          },
+        ]}
         disabled={
           f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' ? false : true
         }
-        onPress={()=>{
-            const originalOtp =otp
-            const userOtp =  f1+f2+f3+f4
+        onPress={() => {
+          const originalOtp = otp;
+          const userOtp = f1 + f2 + f3 + f4;
 
-            console.log(userOtp)
+          console.log(userOtp);
 
-            if(originalOtp==userOtp){
-                console.log("Access")
-            }else{
-                console.log("Denied")
-            }
+          if (originalOtp === userOtp) {
+            console.log('Access');
+          } else {
+            console.log('Denied');
+          }
         }}>
         <Text style={styles.txt3}>Verify</Text>
       </TouchableOpacity>
@@ -175,7 +184,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   btn: {
-    backgroundColor: 'blue',
     width: '50%',
     alignSelf: 'center',
     alignItems: 'center',
