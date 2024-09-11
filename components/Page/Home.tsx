@@ -1,14 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import Logo from '../../assets/svg/Logo';
+const {width}=Dimensions.get('window')
+const scale = width/320
 
 const Home = () => {
   return (
     <View>
-      <Text>Home</Text>
+      <Logo size={250*scale}/>
+      <Text style={styles.txt}>Hello Harsh</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  txt:{
+    fontSize:60*scale,
+    color:'#000000'
+  }
+});
