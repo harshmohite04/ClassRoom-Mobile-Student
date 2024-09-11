@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme} from 'react-native';
 import React from 'react';
 import Image1 from '../../assets/svg/Tick';
 
@@ -28,12 +28,21 @@ const Success = ({ navigation }) => {
   return (
     <View style={[styles.middleContainer, { backgroundColor: theme.background }]}>
       <View style={styles.ImageCard}>
-        <Image1 />
+        <Image1 size={70*scale}/>
       </View>
       <Text style={[styles.txt1, { color: theme.textPrimary }]}>Success</Text>
       <Text style={[styles.txt2, { color: theme.textSecondary }]}>
         Congratulations, you have completed your registration!
       </Text>
+
+      <TouchableOpacity
+        style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]}
+        onPress={() => {
+          navigation.navigate('Home')}
+      }  
+      >
+        <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,8 +51,8 @@ export default Success;
 
 const styles = StyleSheet.create({
   middleContainer: {
-    height: '25%',
-    width: '75%',
+    height: 250 * scale,
+    width: 250 * scale,
     borderRadius: 12 * scale,
     alignItems: 'center',
     justifyContent: 'space-between',

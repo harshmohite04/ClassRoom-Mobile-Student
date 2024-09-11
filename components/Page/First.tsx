@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme } from 'react-native';
 import React, { useEffect, useRef } from 'react';
-import Image1 from '../../assets/svg/image1';  // Light mode image
-import DarkImage1 from '../../assets/svg/darkImage1';  // Dark mode image
+import Image1 from '../../assets/svg/first(image)';  // Light mode image
+import DarkImage1 from '../../assets/svg/first(imageDark)';  // Dark mode image
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
@@ -45,7 +45,7 @@ const First = ({ navigation }) => {
         <Text style={[styles.txt3, { color: colors.skipText }]}>Skip</Text>
       </TouchableOpacity>
       <View style={styles.container}>
-        <ImageComponent /> 
+        <ImageComponent size={190*scale}/> 
       </View>
       <View style={styles.TextContainer}>
         <Text style={[styles.headingText, { color: colors.textPrimary }]}>

@@ -7,8 +7,8 @@ import {
   useColorScheme,
 } from 'react-native';
 import React, {useEffect,useRef} from 'react';
-import SecondImg from '../../assets/svg/image2'; // Light mode image
-import DarkImage2 from '../../assets/svg/darkImage2';
+import SecondImg from '../../assets/svg/Second(image)'; // Light mode image
+import DarkImage2 from '../../assets/svg/Second(imagedark)';
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
@@ -50,7 +50,7 @@ const Second = ({navigation}) => {
         <Text style={[styles.txt3, {color: colors.skipText}]}>Skip</Text>
       </TouchableOpacity>
       <View style={styles.middle}>
-        <ImageComponent />
+        <ImageComponent size={200*scale}/>
         <Text style={[styles.txt1, {color: colors.textPrimary}]}>
           Quick and easy learning
         </Text>

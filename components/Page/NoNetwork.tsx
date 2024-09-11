@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Dimensions, useColorScheme, TouchableOpacity } from 'react-native';
 import React from 'react';
-import ImageLight from '../../assets/svg/NoNetwork1';
+import ImageLight from '../../assets/svg/NoNetwork';
 import ImageDark from '../../assets/svg/NoNetwork(dark)';
 
 const { width } = Dimensions.get('window');
@@ -30,7 +30,7 @@ export default function NoNetwork() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.ImageCard}>
-        <ImageComponent />
+        <ImageComponent size={200*scale}/>
       </View>
       <View>
         <Text style={[styles.TextStyle1, { color: theme.textPrimary }]}>
