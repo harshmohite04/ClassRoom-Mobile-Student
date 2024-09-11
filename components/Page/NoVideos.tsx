@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, useColorScheme, TouchableOpacity } from 'react-native';
 import React from 'react';
 import ImageLight from '../../assets/svg/NoVideos';
-import ImageDark from '../../assets/svg/NoVideos(dark)';
+import ImageDark from '../../assets/svg/NoVideo(dark)';
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
@@ -30,7 +30,7 @@ export default function NoVideos() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.ImageCard}>
-        <ImageComponent />
+        <ImageComponent size={190*scale}/>
       </View>
       <View>
         <Text style={[styles.TextStyle1, { color: theme.textPrimary }]}>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ImageStyle: {
-    height: 150 * scale, // Adjust the size as per your requirement
+    height: 150 * scale,
     width: 150 * scale,
     alignSelf: 'center',
   },

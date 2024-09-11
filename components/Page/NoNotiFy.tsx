@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, useColorScheme } from 'react-native'
 import React from 'react'
-import ImageLight from '../../assets/svg/NoNotification' // Light mode image
-import ImageDark from '../../assets/svg/NoNotifications(dark)' // Dark mode image
+import ImageLight from '../../assets/svg/NoNotify' // Light mode image
+import ImageDark from '../../assets/svg/NoNotify(dark)' // Dark mode image
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
@@ -28,7 +28,7 @@ export default function NoNotiFy() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.ImageCard}>
-        <Image style={styles.ImageStyle} />
+        <Image style={styles.ImageStyle} size={210*scale}/>
       </View>
       <View style={styles.TextCard}>
         <Text style={[styles.TextStyle1, { color: theme.textPrimary }]}>

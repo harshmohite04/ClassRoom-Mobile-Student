@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import PhoneImg from '../../assets/svg/phone1';
-import DarkPhone1 from '../../assets/svg/DarkPhone1';
+import PhoneImg from '../../assets/svg/Phone1';
+import DarkPhone1 from '../../assets/svg/Phone1(Dark)';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -79,7 +79,7 @@ const Phone = ({navigation,route}) => {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <Text style={[styles.txt1, { color: colors.textPrimary }]}>Continue with Phone</Text>
-      <PhoneIcon />
+      <PhoneIcon size={110*scale}/>
       <View style={styles.container2}>
         <Formik
           initialValues={{ phoneLength: '9356836581' }}

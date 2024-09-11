@@ -1,16 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, useColorScheme } from 'react-native'
 import React from 'react'
-import Image1 from '../../assets/svg/Account(pic)'
-import Home from '../../assets/svg/HomeIcon'
-import Search from '../../assets/svg/SearchButton'
-import Course from '../../assets/svg/course'
-import Message from '../../assets/svg/MessageButton'
-import Acc_pic from '../../assets/svg/Acc_ICON'
-import home_dark from '../../assets/svg/Home_icon(Dark)'
-import Course_dark from '../../assets/svg/Course_icon(Dark)'
-import Search_dark from '../../assets/svg/Search_button(dark)'
-import Message_dark from '../../assets/svg/Message_button(Dark)'
-import Account_dark from '../../assets/svg/Acc_icon(dark)'
+import Image1 from '../../assets/svg/Acc_Pic'
 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
@@ -34,11 +24,6 @@ const Account = () => {
     const isDarkMode = colorScheme === 'dark';
     const theme = isDarkMode ? darkTheme : lightTheme;
 
-    const HomeIcon = isDarkMode ? home_dark : Home;
-    const CourseIcon = isDarkMode ? Course_dark : Course;
-    const SearchIcon = isDarkMode ? Search_dark : Search;
-    const MessageIcon = isDarkMode ? Message_dark : Message;
-    const AccIcon = isDarkMode ? Account_dark : Acc_pic;
 
     return (
         <View style={[styles.Container, { backgroundColor: theme.backgroundColor }]}>
@@ -49,7 +34,7 @@ const Account = () => {
             </View>
             <View style={styles.ImageCard}>
                 <TouchableOpacity>
-                    <Image1 />
+                    <Image1 size={120*scale}/>
                 </TouchableOpacity>
             </View>
             <View style={styles.Touchables}>
@@ -76,19 +61,29 @@ const Account = () => {
             </View>
             <View style={[styles.BottomBar, { backgroundColor: theme.bottomBarBackground, borderTopColor: theme.bottomBarBorderColor }]}>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                    <HomeIcon />
+                    <Text>
+                        Home
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                    <CourseIcon />
+                    <Text>
+                        Course
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                    <SearchIcon />
+                    <Text>
+                        Search
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                    <MessageIcon />
+                    <Text>
+                        Messsage
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                    <AccIcon />
+                    <Text>
+                        Account
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>
