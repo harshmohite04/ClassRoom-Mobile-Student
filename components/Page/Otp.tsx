@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   titleBar: {
     flexDirection: 'row',
     paddingVertical: 20 * scale,
-    paddingHorizontal: 10 * scale,
+    paddingHorizontal: 5 * scale,
   },
   txt1: {
     color: '#000000',
@@ -205,8 +205,8 @@ const styles = StyleSheet.create({
   inputView: {
     borderWidth: 1,
     borderRadius: 10,
-    width: 30 * scale,
-    height: 30 * scale,
+    width: "10%",
+    height: 40*scale,
     color: '#000000',
     textAlign: 'center',
   },

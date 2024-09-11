@@ -24,6 +24,7 @@ const First = ({ navigation }) => {
   const colorScheme = useColorScheme();  
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
+  
   const timerRef = useRef(null);
   useEffect(() => {
     timerRef.current =setTimeout(() => {

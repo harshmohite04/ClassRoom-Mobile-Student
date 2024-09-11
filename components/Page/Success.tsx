@@ -35,14 +35,6 @@ const Success = ({ navigation }) => {
         Congratulations, you have completed your registration!
       </Text>
 
-      <TouchableOpacity
-        style={[styles.doneButton, { backgroundColor: theme.buttonBackground }]}
-        onPress={() => {
-          navigation.navigate('Home')}
-      }  
-      >
-        <Text style={[styles.doneButtonText, { color: theme.buttonText }]}>Done</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -51,8 +43,8 @@ export default Success;
 
 const styles = StyleSheet.create({
   middleContainer: {
-    height: 250 * scale,
-    width: 250 * scale,
+    height: "30%",
+    width: "80%",
     borderRadius: 12 * scale,
     alignItems: 'center',
     justifyContent: 'space-between',

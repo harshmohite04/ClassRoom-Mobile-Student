@@ -83,8 +83,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   txt3: {
-    fontSize: 10 * scale,
+    fontSize: 12 * scale,
     textAlign: 'right',
+    fontWeight: 'bold',
     paddingRight: 10 * scale,
     textDecorationLine: 'underline',
   },
