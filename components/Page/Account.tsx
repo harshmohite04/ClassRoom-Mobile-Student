@@ -59,33 +59,6 @@ const Account = () => {
                     </Text>
                 </TouchableOpacity>
             </View>
-            <View style={[styles.BottomBar, { backgroundColor: theme.bottomBarBackground, borderTopColor: theme.bottomBarBorderColor }]}>
-                <TouchableOpacity style={styles.BottomBarItem}>
-                    <Text>
-                        Home
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.BottomBarItem}>
-                    <Text>
-                        Course
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.BottomBarItem}>
-                    <Text>
-                        Search
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.BottomBarItem}>
-                    <Text>
-                        Messsage
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.BottomBarItem}>
-                    <Text>
-                        Account
-                    </Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 }
