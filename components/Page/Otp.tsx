@@ -9,7 +9,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
-import Close from '../../assets/svg/close';
+import Close from '../../assets/svg/Close';
 import Success from './Success';
 
 const {width} = Dimensions.get('window');

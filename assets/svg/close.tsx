@@ -14,4 +14,4 @@ const Close = (props: SvgProps) => (
     />
   </Svg>
 )
-export default Close
+export default Close
