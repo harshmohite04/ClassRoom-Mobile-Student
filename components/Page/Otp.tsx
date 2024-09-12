@@ -11,11 +11,12 @@ import {
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
 import Success from './Success';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
-const Otp = ({navigation, route}) => {
+const Otp = ({navigation, route,setIsFirstLaunch }) => {
   const { phoneNumber = '', otp = '' } = route.params || {};
   const et1 = useRef();
   const et2 = useRef();
@@ -36,8 +37,11 @@ const Otp = ({navigation, route}) => {
     const originalOtp = String(otp);
     const userOtp = f1 + f2 + f3 + f4 + f5 + f6;
 
-    if (userOtp === userOtp) {
+    if (originalOtp === userOtp) {
       setModalVisible(true); 
+      AsyncStorage.setItem('alreadyLaunched', 'true');
+      setIsFirstLaunch(true);  // Update after successful verification
+
     } else {
       console.log('Denied');
     }
