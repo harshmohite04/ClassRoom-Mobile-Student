@@ -9,10 +9,11 @@ import {
 import React, {useState} from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
-const LoginPage = ({navigation}) => {
+const LoginPage = ({navigation,setIsFirstLaunch}) => {
   const loginSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email')
@@ -25,8 +26,11 @@ const LoginPage = ({navigation}) => {
 
   const handleSubmit = (values) => {
     console.log(values);
-
-    // navigation.push('Home');
+    console.log(values.email);
+    console.log(values.password);
+    navigation.push("Tab")
+    AsyncStorage.setItem('alreadyLaunched', 'true');
+      setIsFirstLaunch(true);
   };
 
   const forgetPassword = () => {
@@ -125,7 +129,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '90%',
     borderRadius: 10 * scale,
-    paddingHorizontal:10*scale
+    paddingHorizontal:10*scale,
+    color:"#000000639@gmds"
   },
   btn: {
     backgroundColor: '#3D5CFF',
