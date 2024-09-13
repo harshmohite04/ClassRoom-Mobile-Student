@@ -15,7 +15,6 @@ import LoginPage from './components/Page/LoginPage';
 import Home from './components/Page/Home';
 import Success from './components/Page/Success';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Phone1 from './assets/svg/Phone1';
 import HomeLight from './assets/svg/HomeLight';
 import HomeDark from './assets/svg/HomeDark';
 import Search from './components/Page/Search';
@@ -28,6 +27,7 @@ import MessageDark from './assets/svg/Messagedark';
 import AccountDark from './assets/svg/AccountDark';
 import AccountWhite from './assets/svg/AccountWhite';
 import MessageLight from './assets/svg/MessageLight';
+import SplashScreen from './components/compo/Splash';
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
@@ -117,6 +117,11 @@ function App() {
       </Stack.Navigator>
     );
   };
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+
   return (
     <NavigationContainer>
       {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
