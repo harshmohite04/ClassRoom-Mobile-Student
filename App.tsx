@@ -100,7 +100,7 @@ function App() {
   const StackNavigator = () => {
     return (
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="First"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />

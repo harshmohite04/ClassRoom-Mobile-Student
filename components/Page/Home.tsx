@@ -140,6 +140,6 @@ const styles = StyleSheet.create({
   },
   img1:{
     // alignSelf:'flex-end'
-    alignSelf:'center80'
+    alignSelf:'center'
   }
 });
