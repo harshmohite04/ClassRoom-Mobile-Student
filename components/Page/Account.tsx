@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, useColorScheme } from 'react-native'
 import React from 'react'
 import Image1 from '../../assets/svg/Acc_Pic'
-
+ 
 const { width } = Dimensions.get('window');
 const scale = width / 320;
 
@@ -23,7 +23,6 @@ const Account = () => {
     const colorScheme = useColorScheme();
     const isDarkMode = colorScheme === 'dark';
     const theme = isDarkMode ? darkTheme : lightTheme;
-
 
     return (
         <View style={[styles.Container, { backgroundColor: theme.backgroundColor }]}>
@@ -56,6 +55,33 @@ const Account = () => {
                 <TouchableOpacity>
                     <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
                         Help
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <View style={[styles.BottomBar, { backgroundColor: theme.bottomBarBackground, borderTopColor: theme.bottomBarBorderColor }]}>
+                <TouchableOpacity style={styles.BottomBarItem}>
+                    <Text>
+                        Home
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.BottomBarItem}>
+                    <Text>
+                        Course
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.BottomBarItem}>
+                    <Text>
+                        Search
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.BottomBarItem}>
+                    <Text>
+                        Messsage
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.BottomBarItem}>
+                    <Text>
+                        Account
                     </Text>
                 </TouchableOpacity>
             </View>
