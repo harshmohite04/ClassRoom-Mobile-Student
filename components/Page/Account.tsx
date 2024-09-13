@@ -66,13 +66,11 @@ const Account = () => {
             </View>
             <View style={[styles.BottomBar, { backgroundColor: theme.bottomBarBackground, borderTopColor: theme.bottomBarBorderColor }]}>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                <Home size={25*scale}/>
                     <Text>
                         Home
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.BottomBarItem}>
-                <Course_Icon size={18*scale}/>
                     <Text>
                         Course
                     </Text>
