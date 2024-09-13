@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
@@ -100,7 +100,7 @@ function App() {
   const StackNavigator = () => {
     return (
       <Stack.Navigator
-        initialRouteName="First"
+        initialRouteName="Login"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
@@ -112,7 +112,9 @@ function App() {
 
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Account" component={Account} />
-        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Login">
+        {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
+          </Stack.Screen>
         <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
     );
@@ -124,6 +126,7 @@ function App() {
 
   return (
     <NavigationContainer>
+      {/* {isFirstLaunch ? <StackNavigator/> : <StackNavigator />} */}
       {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
     </NavigationContainer>
   );
