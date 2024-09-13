@@ -124,27 +124,7 @@ function App() {
 
   return (
     <NavigationContainer>
-<<<<<<< HEAD
-    <Stack.Navigator initialRouteName="Account" screenOptions={{headerShown:false}}> 
-      <Stack.Screen name ="First" component={First} />
-      <Stack.Screen name ="Second" component={Second} />
-      <Stack.Screen name ="Third" component={Third} />
-      <Stack.Screen name ="Phone" component={Phone} />
-      <Stack.Screen name ="Otp" component={Otp} />
-      <Stack.Screen name ="Success" component={Success} />
-      <Stack.Screen name ="Notify" component={NotiFy} />
-      <Stack.Screen name ="NoNet" component={NoNet} />
-      <Stack.Screen name ="NoVideo" component={NoVideo} />
-      <Stack.Screen name ="Account" component={Account} />
-      <Stack.Screen name ="Login" component={LoginPage} />
-      <Stack.Screen name ="Home" component={Home} />
-    
-
-
-    </Stack.Navigator>
-=======
       {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
->>>>>>> 0d132a2147780dbfb0e175617a1baba5b1706325
     </NavigationContainer>
   );
 }

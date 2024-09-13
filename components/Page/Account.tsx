@@ -1,9 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, useColorScheme } from 'react-native'
 import React from 'react'
-import Home_dark from '../../assets/icons/Home_icon(Dark)';
-import home_light from '../../assets/icons/Home_Icon';
-import CourseIcon from '../../assets/icons/Course_Icon';
-import Course_dark from '../../assets/icons/Course_icon(Dark)';
 import Image1 from '../../assets/svg/Acc_Pic'
  
 const { width } = Dimensions.get('window');
@@ -27,8 +23,6 @@ const Account = () => {
     const colorScheme = useColorScheme();
     const isDarkMode = colorScheme === 'dark';
     const theme = isDarkMode ? darkTheme : lightTheme;
-    const Home = isDarkMode ? Home_dark : home_light;
-    const Course_Icon = isDarkMode ? Course_dark : CourseIcon;
 
     return (
         <View style={[styles.Container, { backgroundColor: theme.backgroundColor }]}>
