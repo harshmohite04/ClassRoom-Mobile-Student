@@ -52,7 +52,6 @@ const Phone = ({navigation,route}) => {
     try {
       const phoneNumber = values.phoneLength;
       const url = `https://b4bc6a6c-0b21-46b7-8efa-b69fb222c32c-00-fxdi9qigi9jz.sisko.replit.dev:3000/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
-      console.log("heelo")                                                                                                        // to use go to classRoom backend on the it using replit or any other which provide https or Just Call Harsh (and say bkl)
       const response = await fetch(url, {
         method: 'POST',
         headers: {
