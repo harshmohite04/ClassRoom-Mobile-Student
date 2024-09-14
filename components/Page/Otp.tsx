@@ -6,7 +6,6 @@ import {
   Text,
   View,
   Modal,
-  ImageBackground,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Close from '../../assets/svg/close';
@@ -16,8 +15,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
-const Otp = ({navigation, route,setIsFirstLaunch }) => {
-  const { phoneNumber = '', otp = '' } = route.params || {};
+const Otp = ({navigation, route, setIsFirstLaunch}) => {
+  const {phoneNumber = '', otp = ''} = route.params || {};
   const et1 = useRef();
   const et2 = useRef();
   const et3 = useRef();
@@ -38,10 +37,9 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
     const userOtp = f1 + f2 + f3 + f4 + f5 + f6;
 
     if (originalOtp === userOtp) {
-      setModalVisible(true); 
+      setModalVisible(true);
       AsyncStorage.setItem('alreadyLaunched', 'true');
-      setIsFirstLaunch(true);  // Update after successful verification
-
+      setIsFirstLaunch(true); // Update after successful verification
     } else {
       console.log('Denied');
     }
@@ -89,6 +87,7 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
           onChangeText={txt => {
             setF2(txt);
             if (txt.length === 1) et3.current.focus();
+            else if (txt.length==0)et1.current.focus();
           }}
         />
         <TextInput
@@ -103,6 +102,7 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
           onChangeText={txt => {
             setF3(txt);
             if (txt.length === 1) et4.current.focus();
+            else if (txt.length==0)et2.current.focus();
           }}
         />
         <TextInput
@@ -117,6 +117,7 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
           onChangeText={txt => {
             setF4(txt);
             if (txt.length === 1) et5.current.focus();
+            else if (txt.length==0)et3.current.focus();
           }}
         />
         <TextInput
@@ -131,8 +132,9 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
           onChangeText={txt => {
             setF5(txt);
             if (txt.length === 1) et6.current.focus();
+            else if (txt.length==0)et4.current.focus();
           }}
-        />
+          />
         <TextInput
           ref={et6}
           style={[
@@ -144,6 +146,7 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
           value={f6}
           onChangeText={txt => {
             setF6(txt);
+            if (txt.length === 0) et5.current.focus();
           }}
         />
       </View>
@@ -167,14 +170,15 @@ const Otp = ({navigation, route,setIsFirstLaunch }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalBackground}>
-            <Success />
-            <TouchableOpacity
-              style={styles.closeModalButton}
-              onPress={() => {setModalVisible(false)
-                navigation.push("Home")
-              }}>
-              <Text style={styles.closeModalText}>Done</Text>
-            </TouchableOpacity>
+          <Success />
+          <TouchableOpacity
+            style={styles.closeModalButton}
+            onPress={() => {
+              setModalVisible(false);
+              navigation.push('Home');
+            }}>
+            <Text style={styles.closeModalText}>Done</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </View>
@@ -209,8 +213,8 @@ const styles = StyleSheet.create({
   inputView: {
     borderWidth: 1,
     borderRadius: 10,
-    width: "10%",
-    height: 40*scale,
+    width: '10%',
+    height: 40 * scale,
     color: '#000000',
     textAlign: 'center',
   },
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
   modalBackground: {
     flex: 1,
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   blurBackground: {

@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import MenuLight from '../../assets/svg/MenuLight';
 const {width} = Dimensions.get('window');
@@ -6,13 +6,15 @@ const scale = width / 320;
 import Image1 from '../../assets/svg/Acc_Pic';
 import RightAd from '../../assets/svg/RightAd';
 import LeftAd from '../../assets/svg/LeftAd';
-import AttendanceHeatmap from './AttendanceHeatmap.tsx'
+import AttendanceHeatmap from './AttendanceHeatmap.tsx';
+import Todo from '../compo/Todo.tsx';
+import Plus from '../../assets/svg/Plus.tsx';
 const Home = () => {
   const username = 'Harsh';
-  const ongoingLecture="DBMS"
-  const upcomingLecture="SP"
+  const ongoingLecture = 'DBMS';
+  const upcomingLecture = 'SP';
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.flex1}>
         <View style={styles.flex11}>
           <MenuLight size={20 * scale} />
@@ -38,12 +40,26 @@ const Home = () => {
               <Text style={styles.txt3}>Upcoming Lecture</Text>
               <Text style={styles.txt4}>{upcomingLecture}</Text>
             </View>
-            <RightAd size={70 * scale} style={styles.img1}/>
+            <RightAd size={70 * scale} style={styles.img1} />
           </View>
         </View>
         {/* <AttendanceHeatmap/> */}
+
+        <View style={styles.todo}>
+          <View style={styles.row}>
+            <Text style={styles.txt5}>Today's Todo</Text>
+            <Plus size={20 * scale} />
+          </View>
+          <ScrollView style={styles.todoList}>
+            <Todo text="Go to gym" time="1:00" />
+            <Todo text="Go to gym" time="1:00" />
+            <Todo text="Go to gym" time="1:00" />
+            <Todo text="Go to gym" time="1:00" />
+            <Todo text="Go to gym" time="1:00" />
+          </ScrollView>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -61,6 +77,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10 * scale,
     paddingTop: 25 * scale,
     justifyContent: 'space-between',
+    paddingVertical: 30 * scale,
   },
   flex2: {
     flex: 9,
@@ -130,16 +147,43 @@ const styles = StyleSheet.create({
     fontSize: 10 * scale,
     textDecorationLine: 'underline',
     fontWeight: '500',
-    textAlign:'center'
+    textAlign: 'center',
   },
   txt4: {
     color: '#000000',
     fontSize: 20 * scale,
     fontWeight: '500',
-    textAlign:'center'
+    textAlign: 'center',
   },
-  img1:{
+  img1: {
     // alignSelf:'flex-end'
-    alignSelf:'center'
+    alignSelf: 'center',
+  },
+  todo: {
+    width: '90%',
+    height: 200 * scale,
+    backgroundColor: '#000000',
+    alignSelf: 'center',
+    borderRadius: 10 * scale,
+    marginTop: 10 * scale,
+    padding:10*scale,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  todoList: {
+    backgroundColor: '#252527',
+    borderRadius: 10 * scale,
+    marginTop: 10 * scale,
+    width: '95%',
+    alignSelf: 'center',
+    padding: 5 * scale,
+    height: 100 * scale,
+  },
+  txt5:{
+    color:'#ffffff',
+    fontSize:20*scale,
+    fontWeight:'bold'
   }
 });
