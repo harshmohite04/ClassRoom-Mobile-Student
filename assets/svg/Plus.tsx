@@ -3,7 +3,7 @@ import Svg, { Path } from "react-native-svg"
 
 function Plus(props) {
   const handleSubmit=()=>{
-    console.log("hello Pressed")
+    const [seeTodo,setSeeTodo]=React.useState(false)
   }
   return (
     <Svg

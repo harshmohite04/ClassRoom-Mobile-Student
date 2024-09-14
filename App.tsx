@@ -53,7 +53,7 @@ function App() {
   const TabNavigator = () => {
     return (
       <Tab.Navigator
-        initialRouteName={'Home'}
+        initialRouteName={'Course'}
         screenOptions={({route}) => ({
           headerShown: false,
           tabBarIcon: ({focused, color, size}) => {
@@ -126,8 +126,8 @@ function App() {
 
   return (
     <NavigationContainer>
-      {isFirstLaunch ? <StackNavigator/> : <StackNavigator />}
-      {/* {isFirstLaunch ? <TabNavigator /> : <StackNavigator />} */}
+      {/* {isFirstLaunch ? <StackNavigator/> : <StackNavigator />} */}
+      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
     </NavigationContainer>
   );
 }
