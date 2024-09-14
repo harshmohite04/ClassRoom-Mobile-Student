@@ -175,7 +175,7 @@ const Otp = ({navigation, route, setIsFirstLaunch}) => {
             style={styles.closeModalButton}
             onPress={() => {
               setModalVisible(false);
-              navigation.push('Home');
+              navigation.push('Tab');
             }}>
             <Text style={styles.closeModalText}>Done</Text>
           </TouchableOpacity>

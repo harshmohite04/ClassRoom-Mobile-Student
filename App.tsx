@@ -126,8 +126,8 @@ function App() {
 
   return (
     <NavigationContainer>
-      {/* {isFirstLaunch ? <StackNavigator/> : <StackNavigator />} */}
-      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
+      {isFirstLaunch ? <StackNavigator/> : <StackNavigator />}
+      {/* {isFirstLaunch ? <TabNavigator /> : <StackNavigator />} */}
     </NavigationContainer>
   );
 }
