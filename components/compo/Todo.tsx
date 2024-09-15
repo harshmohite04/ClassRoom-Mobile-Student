@@ -3,7 +3,8 @@ import React from 'react';
 
 import Svg, {Path} from 'react-native-svg';
 const {width} = Dimensions.get('window');
-const scale = width / 320;const Todo = (props) => {
+const scale = width / 320;
+const Todo = (props) => {
   return (
     <View style={styles.task}>
       <View style={styles.row1}>

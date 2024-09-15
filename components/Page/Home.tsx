@@ -11,13 +11,16 @@ import {
   Keyboard,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import MenuLight from '../../assets/svg/MenuLight';
 import Image1 from '../../assets/svg/Acc_Pic';
 import RightAd from '../../assets/svg/RightAd';
 import LeftAd from '../../assets/svg/LeftAd';
 import AttendanceHeatmap from './AttendanceHeatmap.tsx';
 import Todo from '../compo/Todo.tsx';
 import Svg, {Path} from 'react-native-svg';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
+import Dashboard from './Dashboard.tsx';
+const Drawer = createDrawerNavigator();
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -38,7 +41,36 @@ function Plus(props) {
     </TouchableOpacity>
   );
 }
-const Home = () => {
+
+function MenuLight(props) {
+  return (
+    <TouchableOpacity onPress={props.fun}>
+      <Svg
+        width={props.size}
+        height={props.size}
+        viewBox="0 0 20 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}>
+        <Path
+          d="M19 2H1a1 1 0 010-2h18a1 1 0 110 2zM19 10H1a1 1 0 010-2h18a1 1 0 110 2zM19 18H1a1 1 0 010-2h18a1 1 0 010 2z"
+          fill="#000"
+        />
+      </Svg>
+    </TouchableOpacity>
+  );
+}
+
+const DrawerNavigator = () => {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="DashBoard">
+        <Drawer.Screen name="DashBoard" component={Dashboard} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+};
+const Home = ({navigation}) => {
   const username = 'Harsh';
   const ongoingLecture = 'DBMS';
   const upcomingLecture = 'SP';
@@ -58,7 +90,9 @@ const Home = () => {
   //   };
   //   fetchTodos();
   // }, []);
-
+  const handleOpenBar = () => {
+    navigation.toggleDrawer();
+  };
   const handleToggleTodo = () => {
     setSeeTodo(!seeTodo);
     setTitle('');
@@ -92,7 +126,7 @@ const Home = () => {
     <ScrollView style={styles.container}>
       <View style={styles.flex1}>
         <View style={styles.flex11}>
-          <MenuLight size={20 * scale} />
+          <MenuLight size={20 * scale} fun={handleOpenBar} />
 
           <View style={styles.flex12}>
             <Text style={styles.txt1}>Hi, {username}</Text>
