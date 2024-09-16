@@ -188,7 +188,7 @@ const Home = () => {
           <Text style={styles.txt1}>Sliding</Text>
         </View>
         <View style={styles.deadLine}>
-          <Text style={styles.txt1}> DeadLine</Text>
+          <Text style={styles.txt1}>DeadLine</Text>
         </View>
       </View>
     </ScrollView>
