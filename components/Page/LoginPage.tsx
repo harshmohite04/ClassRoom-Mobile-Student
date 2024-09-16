@@ -24,14 +24,38 @@ const LoginPage = ({navigation,setIsFirstLaunch}) => {
       .required('Password Field Is Required'),
   });
 
-  const handleSubmit = (values) => {
-    console.log(values);
-    console.log(values.email);
-    console.log(values.password);
-    navigation.push("Tab")
-    AsyncStorage.setItem('alreadyLaunched', 'true');
+  const handleSubmit = async (values) => {
+    const url = `https://1cc1983d-43bb-4afc-abd4-7d74292682e6-00-1m5jpetysfpcm.sisko.replit.dev:3000/login?email=${values.email}&password=${values.password}`;
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST', // Set the method to POST
+        headers: {
+          'Content-Type': 'application/json', // Specify that you're sending JSON data
+        }
+      });
+        console.log(response)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log('Response data:', data);
+      
+      // Uncomment these lines if needed
+      navigation.push("Tab");
+      AsyncStorage.setItem('alreadyLaunched', 'true');
       setIsFirstLaunch(true);
+
+
+
+      //desad1
+    } catch (error) {
+      console.error('Error during fetch:', error);
+    }
   };
+  
+  
 
   const forgetPassword = () => {
     // Forget Pass logic / API call from MongoDB
@@ -130,7 +154,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10 * scale,
     paddingHorizontal:10*scale,
-    color:"#000000639@gmds"
+    color:"#000000"
   },
   btn: {
     backgroundColor: '#3D5CFF',

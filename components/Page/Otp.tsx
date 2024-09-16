@@ -39,7 +39,7 @@ const Otp = ({navigation, route, setIsFirstLaunch}) => {
     if (originalOtp === userOtp) {
       setModalVisible(true);
       AsyncStorage.setItem('alreadyLaunched', 'true');
-      setIsFirstLaunch(true); // Update after successful verification
+      setIsFirstLaunch(true); 
     } else {
       console.log('Denied');
     }
