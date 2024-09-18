@@ -41,7 +41,7 @@ function App() {
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value === null) {
+      if (value === null || value === 'false') {
         setIsFirstLaunch(false);
       } else {
         setIsFirstLaunch(true);

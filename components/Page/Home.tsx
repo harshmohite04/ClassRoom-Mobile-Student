@@ -17,11 +17,6 @@ import LeftAd from '../../assets/svg/LeftAd';
 import AttendanceHeatmap from './AttendanceHeatmap.tsx';
 import Todo from '../compo/Todo.tsx';
 import Svg, {Path} from 'react-native-svg';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
-import Dashboard from './Dashboard.tsx';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-const Drawer = createDrawerNavigator();
 
 const {width} = Dimensions.get('window');
 const scale = width / 320;
@@ -144,7 +139,7 @@ const Home = () => {
 
         <View style={styles.todo}>
           <View style={styles.row}>
-            <Text style={styles.txt5}>Today's Todo</Text>
+            <Text style={styles.txt5}>Today's Todo😀</Text>
             <Plus size={20 * scale} onPress={handleToggleTodo} />
           </View>
           {seeTodo ? (
@@ -188,7 +183,7 @@ const Home = () => {
           <Text style={styles.txt1}>Sliding</Text>
         </View>
         <View style={styles.deadLine}>
-          <Text style={styles.txt1}>DeadLine</Text>
+          <Text style={styles.txt1}>Notifications</Text>
         </View>
       </View>
     </ScrollView>
