@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import First from './components/Page/First';
 import Second from './components/Page/Second';
@@ -26,6 +27,7 @@ import SearchLight from './assets/svg/SearchLight';
 import MessageDark from './assets/svg/Messagedark';
 import AccountDark from './assets/svg/AccountDark';
 import AccountWhite from './assets/svg/AccountWhite';
+import Dashboard from './components/Page/Dashboard'
 import MessageLight from './assets/svg/MessageLight';
 import SplashScreen from './components/compo/Splash';
 
@@ -34,6 +36,7 @@ const scale = width / 320;
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 function App() {
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
@@ -50,43 +53,50 @@ function App() {
     });
   }, []);
 
+  const DrawerNavigator = () => {
+    return (
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={TabNavigator} />
+        <Drawer.Screen name="Account" component={Account} />
+      </Drawer.Navigator>
+    );
+  };
+
   const TabNavigator = () => {
     return (
       <Tab.Navigator
         initialRouteName={'Course'}
         screenOptions={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({focused, color, size}) => {
-            let iconName;
-
+          tabBarIcon: ({focused}) => {
             if (route.name === 'Home') {
-              return focused ? <HomeDark size={20*scale}/> : <HomeLight size={20*scale}/>;
+              return focused ? <HomeDark size={20 * scale} /> : <HomeLight size={20 * scale} />;
             } else if (route.name === 'Course') {
-              return focused ? <CourseDark size={20*scale}/> : <CourseLight size={20*scale}/>;
+              return focused ? <CourseDark size={20 * scale} /> : <CourseLight size={20 * scale} />;
             } else if (route.name === 'Search') {
-              return <SearchLight size={20*scale}/>;
+              return <SearchLight size={20 * scale} />;
             } else if (route.name === 'Message') {
-              return focused ? <MessageDark size={20*scale}/> : <MessageLight size={20*scale}/>;
+              return focused ? <MessageDark size={20 * scale} /> : <MessageLight size={20 * scale} />;
             } else if (route.name === 'Account') {
-              return focused ? <AccountDark size={20*scale}/> : <AccountWhite size={20*scale}/>;
+              return focused ? <AccountDark size={20 * scale} /> : <AccountWhite size={20 * scale} />;
             }
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: {
-            backgroundColor: '#ffffff', 
-            height: 55*scale,              
-            borderTopWidth: 0*scale,      
-            elevation: 10*scale,           
-            shadowOpacity: 0.1*scale,     
-            paddingBottom: 5*scale,       
+            backgroundColor: '#ffffff',
+            height: 55 * scale,
+            borderTopWidth: 0 * scale,
+            elevation: 10 * scale,
+            shadowOpacity: 0.1 * scale,
+            paddingBottom: 5 * scale,
           },
           tabBarLabelStyle: {
-            fontSize: 10*scale,           
-            fontWeight: '600',      
+            fontSize: 10 * scale,
+            fontWeight: '600',
           },
           tabBarIconStyle: {
-            marginTop: 5*scale,           
+            marginTop: 5 * scale,
           },
         })}>
         <Tab.Screen name="Home" component={Home} />
@@ -97,25 +107,23 @@ function App() {
       </Tab.Navigator>
     );
   };
+
   const StackNavigator = () => {
     return (
-      <Stack.Navigator
-        initialRouteName="First"
-        screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Phone" component={Phone} />
-        <Stack.Screen name="Otp">
-          {props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}
-        </Stack.Screen>
-
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
-        <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Login">
-        {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
-          </Stack.Screen>
-        <Stack.Screen name="Tab" component={TabNavigator} />
+        
+          {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
+        </Stack.Screen>
+        <Stack.Screen name="Tab" component={DrawerNavigator} />
       </Stack.Navigator>
     );
   };
@@ -126,10 +134,10 @@ function App() {
 
   return (
     <NavigationContainer>
-      {/* {isFirstLaunch ? <StackNavigator/> : <StackNavigator />} */}
-      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
+      {isFirstLaunch ? <DrawerNavigator /> : <StackNavigator />}
     </NavigationContainer>
   );
 }
+
 export default App;
 const styles = StyleSheet.create({});

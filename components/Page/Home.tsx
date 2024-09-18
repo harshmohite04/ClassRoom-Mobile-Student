@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -9,19 +10,17 @@ import {
   Platform,
   TouchableOpacity,
   Keyboard,
+  Modal,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
 import Image1 from '../../assets/svg/Acc_Pic';
 import RightAd from '../../assets/svg/RightAd';
 import LeftAd from '../../assets/svg/LeftAd';
 import AttendanceHeatmap from './AttendanceHeatmap.tsx';
 import Todo from '../compo/Todo.tsx';
-import Svg, {Path} from 'react-native-svg';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
-import Dashboard from './Dashboard.tsx';
-const Drawer = createDrawerNavigator();
-const {width} = Dimensions.get('window');
+import Svg, { Path } from 'react-native-svg';
+import DashboardScreen from './Dashboard'; 
+
+const { width } = Dimensions.get('window');
 const scale = width / 320;
 
 function Plus(props) {
@@ -35,7 +34,8 @@ function Plus(props) {
         viewBox="0 0 45.402 45.402"
         xmlSpace="preserve"
         stroke="#fff"
-        {...props}>
+        {...props}
+      >
         <Path d="M41.267 18.557H26.832V4.134A4.127 4.127 0 0022.707 0a4.126 4.126 0 00-4.124 4.135v14.432H4.141a4.137 4.137 0 00-4.138 4.135 4.143 4.143 0 001.207 2.934 4.122 4.122 0 002.92 1.222h14.453V41.27c0 1.142.453 2.176 1.201 2.922a4.11 4.11 0 002.919 1.211 4.13 4.13 0 004.129-4.133V26.857h14.435c2.283 0 4.134-1.867 4.133-4.15-.001-2.282-1.852-4.15-4.133-4.15z" />
       </Svg>
     </TouchableOpacity>
@@ -44,14 +44,15 @@ function Plus(props) {
 
 function MenuLight(props) {
   return (
-    <TouchableOpacity onPress={props.fun}>
+    <TouchableOpacity onPress={props.onPress}>
       <Svg
         width={props.size}
         height={props.size}
         viewBox="0 0 20 18"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        {...props}>
+        {...props}
+      >
         <Path
           d="M19 2H1a1 1 0 010-2h18a1 1 0 110 2zM19 10H1a1 1 0 010-2h18a1 1 0 110 2zM19 18H1a1 1 0 010-2h18a1 1 0 010 2z"
           fill="#000"
@@ -61,52 +62,27 @@ function MenuLight(props) {
   );
 }
 
-const DrawerNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="DashBoard">
-        <Drawer.Screen name="DashBoard" component={Dashboard} />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
-};
-const Home = ({navigation}) => {
-  const username = 'Harsh';
-  const ongoingLecture = 'DBMS';
-  const upcomingLecture = 'SP';
+const Home = () => {
+  const User = 'Jayesh'
   const [seeTodo, setSeeTodo] = useState(true);
   const [title, setTitle] = useState('');
   const [taskItems, setTaskItems] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [username, setUsername] = useState('User'); 
 
-  // useEffect(() => {
-  //   const fetchTodos = async () => {
-  //     try {
-  //       const response = await fetch('https://example.com/api/todos'); // Replace with your API
-  //       const data = await response.json();
-  //       setTaskItems(data.todos);
-  //     } catch (error) {
-  //       console.error('Error fetching todos:', error);
-  //     }
-  //   };
-  //   fetchTodos();
-  // }, []);
-  const handleOpenBar = () => {
-    navigation.toggleDrawer();
-  };
   const handleToggleTodo = () => {
     setSeeTodo(!seeTodo);
     setTitle('');
   };
 
   const close = () => {
-    setSeeTodo(!seeTodo);
+    setSeeTodo(true);
     setTitle('');
   };
 
   const submit = () => {
     if (title.trim()) {
-      // Adding task with completion status
-      setTaskItems([...taskItems, {title, completed: false}]);
+      setTaskItems([...taskItems, { title, completed: false }]);
       setSeeTodo(true);
       setTitle('');
       Keyboard.dismiss();
@@ -116,7 +92,6 @@ const Home = ({navigation}) => {
   };
 
   const completeTask = index => {
-    // Toggle completion status instead of removing the task
     const updatedItems = [...taskItems];
     updatedItems[index].completed = !updatedItems[index].completed;
     setTaskItems(updatedItems);
@@ -126,10 +101,9 @@ const Home = ({navigation}) => {
     <ScrollView style={styles.container}>
       <View style={styles.flex1}>
         <View style={styles.flex11}>
-          <MenuLight size={20 * scale} fun={handleOpenBar} />
-
+          <MenuLight size={20 * scale} onPress={() => setModalVisible(true)} />
           <View style={styles.flex12}>
-            <Text style={styles.txt1}>Hi, {username}</Text>
+            <Text style={styles.txt1}>Hi, {User}</Text>
             <Text style={styles.txt2}>Let's start Learning</Text>
           </View>
         </View>
@@ -141,13 +115,13 @@ const Home = ({navigation}) => {
             <LeftAd size={75 * scale} style={styles.img1} />
             <View style={styles.leftAdI}>
               <Text style={styles.txt3}>Ongoing Lecture</Text>
-              <Text style={styles.txt4}>{ongoingLecture}</Text>
+              <Text style={styles.txt4}>DBMS</Text>
             </View>
           </View>
           <View style={styles.rightAd}>
             <View style={styles.rightAdI}>
               <Text style={styles.txt3}>Upcoming Lecture</Text>
-              <Text style={styles.txt4}>{upcomingLecture}</Text>
+              <Text style={styles.txt4}>SP</Text>
             </View>
             <RightAd size={70 * scale} style={styles.img1} />
           </View>
@@ -163,9 +137,9 @@ const Home = ({navigation}) => {
               {taskItems.map((item, index) => (
                 <TouchableOpacity
                   key={index}
-                  onPress={() => completeTask(index)}>
+                  onPress={() => completeTask(index)}
+                >
                   <Todo
-                    key={index}
                     text={item.title}
                     completed={item.completed}
                   />
@@ -174,7 +148,8 @@ const Home = ({navigation}) => {
             </ScrollView>
           ) : (
             <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
               <View style={styles.todoList}>
                 <TextInput
                   style={styles.input}
@@ -202,11 +177,21 @@ const Home = ({navigation}) => {
           <Text style={styles.txt1}>Assignment DeadLine</Text>
         </View>
       </View>
+
+      {/* Modal for Dashboard */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <DashboardScreen closeModal={() => setModalVisible(false)} />
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
-
-export default Home;
 
 const styles = StyleSheet.create({
   container: {
@@ -249,6 +234,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+
+
   leftAd: {
     width: '45%',
     backgroundColor: '#CEECFE',
@@ -373,4 +360,12 @@ const styles = StyleSheet.create({
     borderRadius: 10 * scale,
     marginTop: 5 * scale,
   },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
+export default Home;

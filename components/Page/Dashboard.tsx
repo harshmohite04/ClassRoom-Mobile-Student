@@ -1,14 +1,129 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView, Dimensions,ScrollView } from 'react-native';
+import HomeIcon from '../../assets/svg/Dashboard_home';
 
-const Dashboard = () => {
+const { width } = Dimensions.get('window');
+const scale = width / 320;
+
+const DashboardScreen = ({ closeModal }) => {
   return (
-    <View>
-      <Text>Dashboard</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.profileSection}>
+        <Image
+          source={{ uri: 'https://your-profile-pic-url.com' }} 
+          style={styles.profilePic}
+        />
+        <View>
+          <Text style={styles.profileName}>John Doe</Text>
+          <Text style={styles.profileClass}>Class VII B</Text>
+        </View>
+        <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+          <Text style={styles.closeButtonText}>X</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.gridContainer}>
+        {[
+          { label: 'Dashboard', icon: <HomeIcon width={40 * scale} height={40 * scale} /> },  
+          { label: 'Homework', iconUri: 'https://your-icon-url/homework-icon.png' },
+          { label: 'Attendance', iconUri: 'https://your-icon-url/attendance-icon.png' },
+          { label: 'Fee Details', iconUri: 'https://your-icon-url/fee-icon.png' },
+          { label: 'Examination', iconUri: 'https://your-icon-url/exam-icon.png' },
+          { label: 'Report Cards', iconUri: 'https://your-icon-url/report-cards-icon.png' },
+          { label: 'Calendar', iconUri: 'https://your-icon-url/calendar-icon.png' },
+          { label: 'Notice Board', iconUri: 'https://your-icon-url/notice-board-icon.png' },
+          { label: 'Multimedia', iconUri: 'https://your-icon-url/multimedia-icon.png' },
+          { label: 'Academic Year', iconUri: 'https://your-icon-url/academic-year-icon.png' },
+          { label: 'Profile', iconUri: 'https://your-icon-url/profile-icon.png' },
+        ].map((item, index) => (
+          <View key={index} style={styles.gridItemContainer}>
+            <TouchableOpacity style={styles.gridItem}>
+              {item.icon ? (
+                item.icon  
+              ) : (
+                <Image source={{ uri: item.iconUri }} style={styles.icon} />  
+              )}
+            </TouchableOpacity>
+            <Text style={styles.gridLabel}>{item.label}</Text>
+          </View>
+        ))}
+      </View>
+    </SafeAreaView>
+    
+  );
+};
 
-export default Dashboard
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  profileSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 10 * scale,
+    paddingHorizontal: 10 * scale,
+  },
+  profilePic: {
+    width: 60 * scale,
+    height: 60 * scale,
+    borderRadius: 30 * scale,
+  },
+  profileName: {
+    fontSize: 18 * scale,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  profileClass: {
+    fontSize: 14 * scale,
+    color: '#00000',
+  },
+  closeButton: {
+    backgroundColor: 'transparent',
+  },
+  closeButtonText: {
+    fontSize: 20 * scale,
+    color: '#000000',
+  },
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10 * scale,
+  },
+  gridItemContainer: {
+    width: '30%',
+    alignItems: 'center',
+    marginBottom: 20 * scale
 
-const styles = StyleSheet.create({})
+  },
+  gridItem: {
+    width: '100%',
+    aspectRatio: 1,
+    backgroundColor: '#3d5cff',
+    borderRadius: 60 * scale,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 40 * scale,
+    height: 40 * scale,
+  },
+  gridLabel: {
+    marginTop: 8 * scale,
+    fontSize: 12 * scale,
+    color: '#000000',
+    textAlign: 'center',
+    fontWeight : 'bold'
+  },
+  logoutButton: {
+    marginTop: 30 * scale,
+    alignSelf: 'center',
+  },
+  logoutText: {
+    color: '#ff0000',
+    fontSize: 16 * scale,
+  },
+});
+
+export default DashboardScreen;
