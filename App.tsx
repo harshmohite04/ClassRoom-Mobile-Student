@@ -53,14 +53,6 @@ function App() {
     });
   }, []);
 
-  const DrawerNavigator = () => {
-    return (
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={TabNavigator} />
-        <Drawer.Screen name="Account" component={Account} />
-      </Drawer.Navigator>
-    );
-  };
 
   const TabNavigator = () => {
     return (
@@ -110,11 +102,11 @@ function App() {
 
   const StackNavigator = () => {
     return (
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="Acc" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Acc" component={Account} />
         <Stack.Screen name="Phone" component={Phone} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
