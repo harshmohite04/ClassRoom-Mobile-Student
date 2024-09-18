@@ -25,7 +25,6 @@ const scale = width / 320;
 
 function Plus(props) {
   return (
-    <TouchableOpacity onPress={props.onPress}>
       <Svg
         fill="#fff"
         xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +37,6 @@ function Plus(props) {
       >
         <Path d="M41.267 18.557H26.832V4.134A4.127 4.127 0 0022.707 0a4.126 4.126 0 00-4.124 4.135v14.432H4.141a4.137 4.137 0 00-4.138 4.135 4.143 4.143 0 001.207 2.934 4.122 4.122 0 002.92 1.222h14.453V41.27c0 1.142.453 2.176 1.201 2.922a4.11 4.11 0 002.919 1.211 4.13 4.13 0 004.129-4.133V26.857h14.435c2.283 0 4.134-1.867 4.133-4.15-.001-2.282-1.852-4.15-4.133-4.15z" />
       </Svg>
-    </TouchableOpacity>
   );
 }
 
@@ -63,12 +61,26 @@ function MenuLight(props) {
 }
 
 const Home = () => {
-  const User = 'Jayesh'
+  const ongoingLecture = 'DBMS';
+  const upcomingLecture = 'SP';
   const [seeTodo, setSeeTodo] = useState(true);
   const [title, setTitle] = useState('');
   const [taskItems, setTaskItems] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [username, setUsername] = useState('User'); 
+  const [username, setUsername] = useState('username'); 
+
+  // useEffect(() => {
+  //   const fetchTodos = async () => {
+  //     try {
+  //       const response = await fetch('https://example.com/api/todos'); // Replace with your API
+  //       const data = await response.json();
+  //       setTaskItems(data.todos);
+  //     } catch (error) {
+  //       console.error('Error fetching todos:', error);
+  //     }
+  //   };
+  //   fetchTodos();
+  // }, []);
 
   const handleToggleTodo = () => {
     setSeeTodo(!seeTodo);
@@ -103,7 +115,7 @@ const Home = () => {
         <View style={styles.flex11}>
           <MenuLight size={20 * scale} onPress={() => setModalVisible(true)} />
           <View style={styles.flex12}>
-            <Text style={styles.txt1}>Hi, {User}</Text>
+            <Text style={styles.txt1}>Hi, {username}</Text>
             <Text style={styles.txt2}>Let's start Learning</Text>
           </View>
         </View>
@@ -129,7 +141,7 @@ const Home = () => {
 
         <View style={styles.todo}>
           <View style={styles.row}>
-            <Text style={styles.txt5}>Today's Todo</Text>
+            <Text style={styles.txt5}>Today's Todo😀</Text>
             <Plus size={20 * scale} onPress={handleToggleTodo} />
           </View>
           {seeTodo ? (
@@ -174,7 +186,7 @@ const Home = () => {
           <Text style={styles.txt1}>Sliding</Text>
         </View>
         <View style={styles.deadLine}>
-          <Text style={styles.txt1}>Assignment DeadLine</Text>
+          <Text style={styles.txt1}>Notifications</Text>
         </View>
       </View>
 
@@ -259,15 +271,16 @@ const styles = StyleSheet.create({
   leftAdI: {
     height: '55%',
     width: '60%',
-    backgroundColor: '#F3FBFF',
+    backgroundColor: '#BBE6FF',
     borderTopLeftRadius: 8 * scale,
     borderBottomLeftRadius: 8 * scale,
     alignSelf: 'center',
+    
   },
   rightAdI: {
     height: '55%',
     width: '60%',
-    backgroundColor: '#F3FBFF',
+    backgroundColor: '#E7D0FF',
     borderTopRightRadius: 8 * scale,
     borderBottomRightRadius: 8 * scale,
     alignSelf: 'center',

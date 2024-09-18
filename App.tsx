@@ -30,7 +30,7 @@ import AccountWhite from './assets/svg/AccountWhite';
 import Dashboard from './components/Page/Dashboard'
 import MessageLight from './assets/svg/MessageLight';
 import SplashScreen from './components/compo/Splash';
-
+import DrawerNavigator from './components/Page/Home';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -44,7 +44,7 @@ function App() {
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value === null) {
+      if (value === null || value === 'false') {
         setIsFirstLaunch(false);
       } else {
         setIsFirstLaunch(true);
@@ -65,7 +65,7 @@ function App() {
   const TabNavigator = () => {
     return (
       <Tab.Navigator
-        initialRouteName={'Course'}
+        initialRouteName={'Home'}
         screenOptions={({route}) => ({
           headerShown: false,
           tabBarIcon: ({focused}) => {
@@ -99,7 +99,7 @@ function App() {
             marginTop: 5 * scale,
           },
         })}>
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Home" component={DrawerNavigator} />
         <Tab.Screen name="Course" component={Course} />
         <Tab.Screen name="Search" component={Search} />
         <Tab.Screen name="Message" component={Message} />

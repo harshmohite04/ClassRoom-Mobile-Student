@@ -17,6 +17,7 @@ import { Formik } from 'formik';
 const { width } = Dimensions.get('window');
 const scale = width / 320;
 
+
 const lightTheme = {
   background: '#FFFFFF',
   textPrimary: '#1F1F39',
@@ -41,7 +42,7 @@ const Phone = ({navigation,route}) => {
   const isDarkMode = colorScheme === 'dark';
   const colors = isDarkMode ? darkTheme : lightTheme;
   const PhoneIcon = isDarkMode ? DarkPhone1 : PhoneImg;
-
+  const [btnContinue,setBtnContinue] = useState(false)
   const phoneSchema = Yup.object().shape({
     phoneLength: Yup.string()
       .length(10, "Must be 10 numbers")
@@ -49,9 +50,10 @@ const Phone = ({navigation,route}) => {
   });
 
   const handleSubmit = async (values) => {
+    setBtnContinue(true)
     try {
       const phoneNumber = values.phoneLength;
-      const url = `https://b4bc6a6c-0b21-46b7-8efa-b69fb222c32c-00-fxdi9qigi9jz.sisko.replit.dev:3000/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
+      const url = `https://1cc1983d-43bb-4afc-abd4-7d74292682e6-00-1m5jpetysfpcm.sisko.replit.dev:3000/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
       console.log("heelo")                                                                                                        // to use go to classRoom backend on the it using replit or any other which provide https or Just Call Harsh (and say bkl)
       const response = await fetch(url, {
         method: 'POST',
@@ -59,7 +61,7 @@ const Phone = ({navigation,route}) => {
           'Content-Type': 'application/json',
         },
       });
-      
+      console.log(response)
       if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(`HTTP Error: ${response.status} - ${errorMessage}`);
@@ -82,7 +84,7 @@ const Phone = ({navigation,route}) => {
       <PhoneIcon size={110*scale}/>
       <View style={styles.container2}>
         <Formik
-          initialValues={{ phoneLength: '9356836581' }}
+          initialValues={{ phoneLength: '' }}
           validationSchema={phoneSchema}
           onSubmit={handleSubmit}
         >
@@ -102,7 +104,7 @@ const Phone = ({navigation,route}) => {
               {errors.phoneLength && touched.phoneLength && (
                 <Text style={{ color: 'red' }}>{errors.phoneLength}</Text>
               )}
-              <TouchableOpacity onPress={handleSubmit} style={styles.center}>
+              <TouchableOpacity onPress={handleSubmit} style={styles.center} disabled={btnContinue}>
                 <View style={[styles.getOtp, { backgroundColor: colors.buttonPrimary }]}>
                   <Text style={styles.getOtptxt}>Continue</Text>
                 </View>
