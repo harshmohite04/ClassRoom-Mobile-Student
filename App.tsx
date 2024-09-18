@@ -4,7 +4,6 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import First from './components/Page/First';
 import Second from './components/Page/Second';
@@ -36,7 +35,6 @@ const scale = width / 320;
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 function App() {
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
@@ -53,14 +51,7 @@ function App() {
     });
   }, []);
 
-  const DrawerNavigator = () => {
-    return (
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={TabNavigator} />
-        <Drawer.Screen name="Account" component={Account} />
-      </Drawer.Navigator>
-    );
-  };
+
 
   const TabNavigator = () => {
     return (
@@ -99,7 +90,7 @@ function App() {
             marginTop: 5 * scale,
           },
         })}>
-        <Tab.Screen name="Home" component={DrawerNavigator} />
+        <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Course" component={Course} />
         <Tab.Screen name="Search" component={Search} />
         <Tab.Screen name="Message" component={Message} />
@@ -114,7 +105,6 @@ function App() {
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
         <Stack.Screen name="Phone" component={Phone} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
@@ -123,7 +113,7 @@ function App() {
         
           {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
         </Stack.Screen>
-        <Stack.Screen name="Tab" component={DrawerNavigator} />
+        <Stack.Screen name="Tab" component={Home} />
       </Stack.Navigator>
     );
   };
@@ -134,7 +124,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      {isFirstLaunch ? <DrawerNavigator /> : <StackNavigator />}
+      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
     </NavigationContainer>
   );
 }
