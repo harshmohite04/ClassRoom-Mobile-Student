@@ -30,6 +30,7 @@ import Dashboard from './components/Page/Dashboard'
 import MessageLight from './assets/svg/MessageLight';
 import SplashScreen from './components/compo/Splash';
 import DrawerNavigator from './components/Page/Home';
+import LogoutSuccess from './components/Page/Succes(Logout)'
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -100,19 +101,21 @@ function App() {
 
   const StackNavigator = () => {
     return (
-      <Stack.Navigator initialRouteName="Acc" screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="Account" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
+        <Stack.Screen name="Logout" component={LogoutSuccess} />
         <Stack.Screen name="Login">
         
           {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
         </Stack.Screen>
-        <Stack.Screen name="Tab" component={Home} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
     );
   };

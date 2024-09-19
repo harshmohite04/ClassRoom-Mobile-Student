@@ -4,10 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  useColorScheme
+  useColorScheme,
+  SafeAreaView
 } from 'react-native';
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import PhoneImg from '../../assets/svg/Phone1';
 import DarkPhone1 from '../../assets/svg/Phone1(Dark)';
 import { TextInput } from 'react-native-gesture-handler';
