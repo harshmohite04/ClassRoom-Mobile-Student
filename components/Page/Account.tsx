@@ -65,15 +65,21 @@ const Account = ({navigation}) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={async () => {
-            await AsyncStorage.setItem('alreadyLaunched', 'false');
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'First'}],
-            });
-          }}>
-          <Text style={[styles.txt1]}>LogOut</Text>
-        </TouchableOpacity>
+  onPress={async () => {
+    try {
+      await AsyncStorage.setItem('alreadyLaunched', 'false');
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'First'}], // Ensure 'First' is the correct route name
+      });
+    } catch (error) {
+      console.error('Error setting AsyncStorage value', error);
+    }
+  }}
+>
+  <Text style={[styles.txt1]}>LogOut</Text>
+</TouchableOpacity>
+
       </View>
     </View>
   );

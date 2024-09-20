@@ -113,7 +113,7 @@ function App() {
         
           {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
         </Stack.Screen>
-        <Stack.Screen name="Tab" component={Home} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
     );
   };
@@ -124,7 +124,8 @@ function App() {
 
   return (
     <NavigationContainer>
-      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
+      {/* {isFirstLaunch ? <TabNavigator /> : <StackNavigator />} */}
+      {isFirstLaunch ? <TabNavigator /> : <TabNavigator />}
     </NavigationContainer>
   );
 }
