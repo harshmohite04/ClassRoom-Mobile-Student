@@ -28,11 +28,8 @@ import SearchLight from './assets/svg/SearchLight';
 import MessageDark from './assets/svg/Messagedark';
 import AccountDark from './assets/svg/AccountDark';
 import AccountWhite from './assets/svg/AccountWhite';
-import Dashboard from './components/Page/Dashboard'
 import MessageLight from './assets/svg/MessageLight';
 import SplashScreen from './components/compo/Splash';
-import DrawerNavigator from './components/Page/Home';
-import LogoutSuccess from './components/Page/Succes(Logout)'
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -53,6 +50,7 @@ function App() {
       setLoading(false);
     });
   }, []);
+
 
 
   const TabNavigator = () => {
@@ -103,17 +101,23 @@ function App() {
 
   const StackNavigator = () => {
     return (
+<<<<<<< HEAD
       <Stack.Navigator initialRouteName="Notice" screenOptions={{headerShown: false}}>
+=======
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+>>>>>>> 138e937c40b8474ea36b7ed03ad0327daf67efd9
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
+<<<<<<< HEAD
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Notice" component={Notice} />
         <Stack.Screen name="Account" component={Account} />
+=======
+>>>>>>> 138e937c40b8474ea36b7ed03ad0327daf67efd9
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
-        <Stack.Screen name="Logout" component={LogoutSuccess} />
         <Stack.Screen name="Login">
         
           {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
@@ -130,7 +134,7 @@ function App() {
   return (
     <NavigationContainer>
       {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
-      {/* {isFirstLaunch ? <TabNavigator /> : <TabNavigator/>} */}
+      {/* {isFirstLaunch ? <TabNavigator /> : <TabNavigator />} */}
     </NavigationContainer>
   );
 }

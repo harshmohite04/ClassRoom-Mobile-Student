@@ -1,8 +1,15 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, useColorScheme} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  useColorScheme,
+} from 'react-native';
 import React from 'react';
 import Image1 from '../../assets/svg/Tick';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 const scale = width / 320;
 
 const lightTheme = {
@@ -17,21 +24,21 @@ const darkTheme = {
   background: '#2F2F42',
   textPrimary: '#FFFFFF',
   textSecondary: '#A9A9A9',
-  buttonBackground: '#3D5CFF', 
+  buttonBackground: '#3D5CFF',
   buttonText: '#FFFFFF',
 };
 
-const Success = ({ navigation }) => {
+const Success = ({navigation}) => {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
   return (
-    <View style={[styles.middleContainer, { backgroundColor: theme.background }]}>
+    <View style={[styles.middleContainer, {backgroundColor: theme.background}]}>
       <View style={styles.ImageCard}>
-        <Image1 size={70*scale}/>
+        <Image1 size={70 * scale} />
       </View>
-      <Text style={[styles.txt1, { color: theme.textPrimary }]}>Logged Out</Text>
-      <Text style={[styles.txt2, { color: theme.textSecondary }]}>
+      <Text style={[styles.txt1, {color: theme.textPrimary}]}>Logged Out</Text>
+      <Text style={[styles.txt2, {color: theme.textSecondary}]}>
         Hey , you have logged out succesfully
       </Text>
     </View>
@@ -42,8 +49,8 @@ export default Success;
 
 const styles = StyleSheet.create({
   middleContainer: {
-    height: "30%",
-    width: "80%",
+    height: '30%',
+    width: '80%',
     borderRadius: 12 * scale,
     alignItems: 'center',
     justifyContent: 'space-between',

@@ -25,35 +25,47 @@ const LoginPage = ({navigation,setIsFirstLaunch}) => {
   });
 
   const handleSubmit = async (values) => {
-    const url = `https://1cc1983d-43bb-4afc-abd4-7d74292682e6-00-1m5jpetysfpcm.sisko.replit.dev:3000/login?email=${values.email}&password=${values.password}`;
-  
+    const url = 'https://aaa9f595-3b26-4a6a-af47-f1938b3b2a10-00-3e0zo8jkkioua.pike.replit.dev/login';
+    
     try {
       const response = await fetch(url, {
-        method: 'POST', // Set the method to POST
+        method: 'POST', // Use POST method
         headers: {
-          'Content-Type': 'application/json', // Specify that you're sending JSON data
-        }
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ // Send data in the body
+          email: values.email,
+          password: values.password,
+        }),
+        credentials: 'include', // This is necessary for cookie handling
       });
-        console.log(response)
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  
+      // Log the raw response to check its format
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+      
+      // Check if the response content-type is JSON before parsing
+      const contentType = response.headers.get("content-type");
+      let data;
+      
+      if (contentType && contentType.includes("application/json")) {
+        data = JSON.parse(responseText);
+        console.log('Parsed JSON response:', data);
+      } else {
+        console.error('Expected JSON, but received:', responseText);
+        throw new Error('Invalid response format');
       }
   
-      const data = await response.json();
-      console.log('Response data:', data);
-      
-      // Uncomment these lines if needed
-      navigation.push("Tab");
-      AsyncStorage.setItem('alreadyLaunched', 'true');
+      // If login is successful, proceed with navigation
+      navigation.push('Tab');
+      await AsyncStorage.setItem('alreadyLaunched', 'true');
       setIsFirstLaunch(true);
-
-
-
-      //desad1
     } catch (error) {
       console.error('Error during fetch:', error);
     }
   };
+  
+  
   
   
 

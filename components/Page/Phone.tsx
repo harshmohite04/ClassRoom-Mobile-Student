@@ -53,7 +53,7 @@ const Phone = ({navigation,route}) => {
     setBtnContinue(true)
     try {
       const phoneNumber = values.phoneLength;
-      const url = `https://1cc1983d-43bb-4afc-abd4-7d74292682e6-00-1m5jpetysfpcm.sisko.replit.dev:3000/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
+      const url = `https://aaa9f595-3b26-4a6a-af47-f1938b3b2a10-00-3e0zo8jkkioua.pike.replit.dev/otp?number=${phoneNumber}`; // http is not working but android Manifest is chutiya , plz use https
       console.log("heelo")                                                                                                        // to use go to classRoom backend on the it using replit or any other which provide https or Just Call Harsh (and say bkl)
       const response = await fetch(url, {
         method: 'POST',

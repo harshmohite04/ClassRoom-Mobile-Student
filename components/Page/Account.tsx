@@ -7,12 +7,12 @@ import {
   useColorScheme,
   Modal,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Image1 from '../../assets/svg/Acc_Pic';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Success from './Succes(Logout)'; 
+import Success from './Succes(Logout)';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 const scale = width / 320;
 
 const lightTheme = {
@@ -29,16 +29,37 @@ const darkTheme = {
   bottomBarBorderColor: '#333',
 };
 
-const Account = ({ navigation }) => {
+const Account = ({navigation}) => {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
   const theme = isDarkMode ? darkTheme : lightTheme;
 
   const [modalVisible, setModalVisible] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
   const handleLogout = async () => {
     setModalVisible(true); // Open confirmation modal
+
+    try {
+      const response = await fetch(
+        'https://aaa9f595-3b26-4a6a-af47-f1938b3b2a10-00-3e0zo8jkkioua.pike.replit.dev/logout',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', // Necessary for handling cookies
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to log out');
+      }
+
+      const data = await response.json();
+      console.log(data.message); // Optional success message
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
 
   const confirmLogout = async () => {
@@ -51,15 +72,15 @@ const Account = ({ navigation }) => {
 
       navigation.reset({
         index: 0,
-        routes: [{ name: 'First' }],
+        routes: [{name: 'First'}],
       });
-    }, 3000); 
+    }, 1000);
   };
 
   return (
-    <View style={[styles.Container, { backgroundColor: theme.backgroundColor }]}>
+    <View style={[styles.Container, {backgroundColor: theme.backgroundColor}]}>
       <View style={styles.AccountText}>
-        <Text style={[styles.StylingAccount, { color: theme.textColor }]}>
+        <Text style={[styles.StylingAccount, {color: theme.textColor}]}>
           Account
         </Text>
       </View>
@@ -70,22 +91,22 @@ const Account = ({ navigation }) => {
       </View>
       <View style={styles.Touchables}>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
+          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
             Favourite
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
+          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
             Edit Account
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
+          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
             Settings and Privacy
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
+          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
             Help
           </Text>
         </TouchableOpacity>
@@ -99,22 +120,21 @@ const Account = ({ navigation }) => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
+        onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Are you sure you want to log out?</Text>
+            <Text style={styles.modalText}>
+              Are you sure you want to log out?
+            </Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 style={styles.modalButton}
-                onPress={() => setModalVisible(false)}
-              >
+                onPress={() => setModalVisible(false)}>
                 <Text style={styles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.modalButton}
-                onPress={confirmLogout}
-              >
+                onPress={confirmLogout}>
                 <Text style={styles.modalButtonText}>Confirm</Text>
               </TouchableOpacity>
             </View>
@@ -171,9 +191,9 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',  
-    alignItems: 'center',      
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',  
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
     width: '80%',
@@ -204,8 +224,8 @@ const styles = StyleSheet.create({
   },
   successModalContainer: {
     flex: 1,
-    justifyContent: 'center',  // Center the success modal vertically
-    alignItems: 'center',       // Center the success modal horizontally
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Optional background overlay
+    justifyContent: 'center', // Center the success modal vertically
+    alignItems: 'center', // Center the success modal horizontally
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional background overlay
   },
 });
