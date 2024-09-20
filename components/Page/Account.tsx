@@ -5,11 +5,14 @@ import {
   TouchableOpacity,
   Dimensions,
   useColorScheme,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Image1 from '../../assets/svg/Acc_Pic';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const {width} = Dimensions.get('window');
+import Success from './Succes(Logout)'; 
+
+const { width } = Dimensions.get('window');
 const scale = width / 320;
 
 const lightTheme = {
@@ -26,15 +29,37 @@ const darkTheme = {
   bottomBarBorderColor: '#333',
 };
 
-const Account = ({navigation}) => {
+const Account = ({ navigation }) => {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
   const theme = isDarkMode ? darkTheme : lightTheme;
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleLogout = async () => {
+    setModalVisible(true); // Open confirmation modal
+  };
+
+  const confirmLogout = async () => {
+    setModalVisible(false);
+    setShowSuccess(true); // Show success modal
+
+    setTimeout(async () => {
+      setShowSuccess(false);
+      await AsyncStorage.setItem('alreadyLaunched', 'false');
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'First' }],
+      });
+    }, 3000); 
+  };
+
   return (
-    <View style={[styles.Container, {backgroundColor: theme.backgroundColor}]}>
+    <View style={[styles.Container, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.AccountText}>
-        <Text style={[styles.StylingAccount, {color: theme.textColor}]}>
+        <Text style={[styles.StylingAccount, { color: theme.textColor }]}>
           Account
         </Text>
       </View>
@@ -45,42 +70,66 @@ const Account = ({navigation}) => {
       </View>
       <View style={styles.Touchables}>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
+          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
             Favourite
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
+          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
             Edit Account
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
+          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
             Settings and Privacy
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.TouchablesText, {color: theme.textColor}]}>
+          <Text style={[styles.TouchablesText, { color: theme.textColor }]}>
             Help
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-  onPress={async () => {
-    try {
-      await AsyncStorage.setItem('alreadyLaunched', 'false');
-      navigation.reset({
-        index: 0,
-        routes: [{name: 'First'}], // Ensure 'First' is the correct route name
-      });
-    } catch (error) {
-      console.error('Error setting AsyncStorage value', error);
-    }
-  }}
->
-  <Text style={[styles.txt1]}>LogOut</Text>
-</TouchableOpacity>
-
+        <TouchableOpacity onPress={handleLogout}>
+          <Text style={[styles.txt1]}>LogOut</Text>
+        </TouchableOpacity>
       </View>
+
+      {/* Logout Confirmation Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Are you sure you want to log out?</Text>
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={styles.modalButtonText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={confirmLogout}
+              >
+                <Text style={styles.modalButtonText}>Confirm</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Success Modal */}
+      {showSuccess && (
+        <Modal transparent={true} animationType="fade">
+          <View style={styles.successModalContainer}>
+            <Success />
+          </View>
+        </Modal>
+      )}
     </View>
   );
 };
@@ -114,26 +163,49 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 25 * scale,
   },
-  BottomBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 60 * scale,
-    borderTopWidth: 1,
-    paddingHorizontal: 10 * scale,
-  },
-  BottomBarItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   txt1: {
     fontSize: 15 * scale,
     fontWeight: 'bold',
     paddingTop: 25 * scale,
     color: '#ff0000',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',  
+    alignItems: 'center',      
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',  
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: '#fff',
+    borderRadius: 10 * scale,
+    padding: 20 * scale,
+    alignItems: 'center',
+  },
+  modalText: {
+    fontSize: 18 * scale,
+    fontWeight: 'bold',
+    marginBottom: 20 * scale,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  modalButton: {
+    backgroundColor: '#3D5CFF',
+    padding: 10 * scale,
+    borderRadius: 10 * scale,
+    marginHorizontal: 10 * scale,
+  },
+  modalButtonText: {
+    color: '#fff',
+    fontSize: 14 * scale,
+    fontWeight: 'bold',
+  },
+  successModalContainer: {
+    flex: 1,
+    justifyContent: 'center',  // Center the success modal vertically
+    alignItems: 'center',       // Center the success modal horizontally
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Optional background overlay
   },
 });

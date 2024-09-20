@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView, Dimensions,ScrollView } from 'react-native';
 import HomeIcon from '../../assets/svg/Dashboard_home';
-
+import HomeWork from '../../assets/svg/HomeWork'
+import Attendance from '../../assets/svg/Attendance'
+import Quiz from '../../assets/svg/Quiz(Dashboard)'
+import Examination from '../../assets/svg/Examination'
 const { width } = Dimensions.get('window');
 const scale = width / 320;
 
@@ -24,10 +27,10 @@ const DashboardScreen = ({ closeModal }) => {
       <View style={styles.gridContainer}>
         {[
           { label: 'Dashboard', icon: <HomeIcon width={40 * scale} height={40 * scale} /> },  
-          { label: 'Homework', iconUri: 'https://your-icon-url/homework-icon.png' },
-          { label: 'Attendance', iconUri: 'https://your-icon-url/attendance-icon.png' },
-          { label: 'Fee Details', iconUri: 'https://your-icon-url/fee-icon.png' },
-          { label: 'Examination', iconUri: 'https://your-icon-url/exam-icon.png' },
+          { label: 'Homework', icon: <HomeWork width={40 * scale} height={40 * scale}/>},
+          { label: 'Attendance', icon: <Attendance width={40*scale} height={40 * scale}/>},
+          { label: 'Quiz', icon:<Quiz width={40*scale} height={40 * scale}/>},
+          { label: 'Examination', icon: <Examination width={40*scale} height={40 * scale}/>},
           { label: 'Report Cards', iconUri: 'https://your-icon-url/report-cards-icon.png' },
           { label: 'Calendar', iconUri: 'https://your-icon-url/calendar-icon.png' },
           { label: 'Notice Board', iconUri: 'https://your-icon-url/notice-board-icon.png' },
