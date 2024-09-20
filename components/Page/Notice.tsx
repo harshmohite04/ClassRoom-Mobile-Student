@@ -11,7 +11,7 @@ const Notice = ({navigation}) => {
       <View style={styles.navbar}>
         <TouchableOpacity onPress={
           () => {
-            navigation.push('Account')
+            navigation.push('Home')
           }
         }>
           <Go_back size={30 * scale}/>
@@ -22,7 +22,7 @@ const Notice = ({navigation}) => {
       </View>
       <View style={styles.subcontainer}>
       <Text style={styles.listText}>
-        Notification List
+        Notificarion List
       </Text>
       <View style={styles.cardContiner}>
         <Card/>

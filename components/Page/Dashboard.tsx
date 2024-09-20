@@ -5,6 +5,7 @@ import HomeWork from '../../assets/svg/HomeWork'
 import Attendance from '../../assets/svg/Attendance'
 import Quiz from '../../assets/svg/Quiz(Dashboard)'
 import Examination from '../../assets/svg/Examination'
+import Notice from '../../assets/svg/Notice_board'
 const { width } = Dimensions.get('window');
 const scale = width / 320;
 
@@ -17,8 +18,8 @@ const DashboardScreen = ({ closeModal }) => {
           style={styles.profilePic}
         />
         <View>
-          <Text style={styles.profileName}>John Doe</Text>
-          <Text style={styles.profileClass}>Class VII B</Text>
+          <Text style={styles.profileName}>JAYESH DANGI</Text>
+          <Text style={styles.profileClass}>Y BTech</Text>
         </View>
         <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
           <Text style={styles.closeButtonText}>X</Text>
@@ -29,11 +30,11 @@ const DashboardScreen = ({ closeModal }) => {
           { label: 'Dashboard', icon: <HomeIcon width={40 * scale} height={40 * scale} /> },  
           { label: 'Homework', icon: <HomeWork width={40 * scale} height={40 * scale}/>},
           { label: 'Attendance', icon: <Attendance width={40*scale} height={40 * scale}/>},
-          { label: 'Quiz', icon:<Quiz width={40*scale} height={40 * scale}/>},
+          { label: 'Quiz', icon: <Quiz width={40*scale} height={40 * scale}/>},
           { label: 'Examination', icon: <Examination width={40*scale} height={40 * scale}/>},
           { label: 'Report Cards', iconUri: 'https://your-icon-url/report-cards-icon.png' },
           { label: 'Calendar', iconUri: 'https://your-icon-url/calendar-icon.png' },
-          { label: 'Notice Board', iconUri: 'https://your-icon-url/notice-board-icon.png' },
+          { label: 'Notice Board', icon: <Notice width={40*scale} height={40 * scale}/>,},
           { label: 'Multimedia', iconUri: 'https://your-icon-url/multimedia-icon.png' },
           { label: 'Academic Year', iconUri: 'https://your-icon-url/academic-year-icon.png' },
           { label: 'Profile', iconUri: 'https://your-icon-url/profile-icon.png' },
