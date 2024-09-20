@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   leftAdI: {
     height: '55%',
     width: '60%',
-    backgroundColor: '#F3FBFF',
+    backgroundColor: '#BBE6FF',
     borderTopLeftRadius: 8 * scale,
     borderBottomLeftRadius: 8 * scale,
     alignSelf: 'center',
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   rightAdI: {
     height: '55%',
     width: '60%',
-    backgroundColor: '#F3FBFF',
+    backgroundColor: '#E7D0FF',
     borderTopRightRadius: 8 * scale,
     borderBottomRightRadius: 8 * scale,
     alignSelf: 'center',

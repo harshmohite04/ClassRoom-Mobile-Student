@@ -26,10 +26,8 @@ import SearchLight from './assets/svg/SearchLight';
 import MessageDark from './assets/svg/Messagedark';
 import AccountDark from './assets/svg/AccountDark';
 import AccountWhite from './assets/svg/AccountWhite';
-import Dashboard from './components/Page/Dashboard'
 import MessageLight from './assets/svg/MessageLight';
 import SplashScreen from './components/compo/Splash';
-import DrawerNavigator from './components/Page/Home';
 const {width} = Dimensions.get('window');
 const scale = width / 320;
 
@@ -106,7 +104,6 @@ function App() {
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Login">
@@ -124,8 +121,8 @@ function App() {
 
   return (
     <NavigationContainer>
-      {/* {isFirstLaunch ? <TabNavigator /> : <StackNavigator />} */}
-      {isFirstLaunch ? <TabNavigator /> : <TabNavigator />}
+      {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
+      {/* {isFirstLaunch ? <TabNavigator /> : <TabNavigator />} */}
     </NavigationContainer>
   );
 }
