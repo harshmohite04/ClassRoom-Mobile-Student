@@ -101,7 +101,7 @@ function App() {
 
   const StackNavigator = () => {
     return (
-      <Stack.Navigator initialRouteName="Account" screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="First" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
@@ -127,6 +127,7 @@ function App() {
   return (
     <NavigationContainer>
       {isFirstLaunch ? <TabNavigator /> : <StackNavigator />}
+      {/* {isFirstLaunch ? <TabNavigator /> : <TabNavigator/>} */}
     </NavigationContainer>
   );
 }
