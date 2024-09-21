@@ -101,21 +101,14 @@ function App() {
 
   const StackNavigator = () => {
     return (
-<<<<<<< HEAD
-      <Stack.Navigator initialRouteName="Notice" screenOptions={{headerShown: false}}>
-=======
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
->>>>>>> 138e937c40b8474ea36b7ed03ad0327daf67efd9
+      <Stack.Navigator initialRouteName="First" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
-<<<<<<< HEAD
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Notice" component={Notice} />
         <Stack.Screen name="Account" component={Account} />
-=======
->>>>>>> 138e937c40b8474ea36b7ed03ad0327daf67efd9
         <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Login">
