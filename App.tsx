@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+
 import First from './components/Page/First';
 import Second from './components/Page/Second';
 import Phone from './components/Page/Phone';
@@ -14,6 +15,7 @@ import Account from './components/Page/Account';
 import LoginPage from './components/Page/LoginPage';
 import Home from './components/Page/Home';
 import Success from './components/Page/Success';
+import Notice from './components/Page/Notice'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeLight from './assets/svg/HomeLight';
 import HomeDark from './assets/svg/HomeDark';
@@ -113,16 +115,15 @@ function App() {
 
   const StackNavigator = () => {
     return (
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="First" screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
-        <Stack.Screen name="Otp">
-          {props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}
-        </Stack.Screen>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Notice" component={Notice} />
+        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Login">
           {props => (
