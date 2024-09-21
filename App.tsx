@@ -49,8 +49,6 @@ function App() {
     });
   }, []);
 
-
-
   const TabNavigator = () => {
     return (
       <Tab.Navigator
@@ -59,15 +57,31 @@ function App() {
           headerShown: false,
           tabBarIcon: ({focused}) => {
             if (route.name === 'Home') {
-              return focused ? <HomeDark size={20 * scale} /> : <HomeLight size={20 * scale} />;
+              return focused ? (
+                <HomeDark size={20 * scale} />
+              ) : (
+                <HomeLight size={20 * scale} />
+              );
             } else if (route.name === 'Course') {
-              return focused ? <CourseDark size={20 * scale} /> : <CourseLight size={20 * scale} />;
+              return focused ? (
+                <CourseDark size={20 * scale} />
+              ) : (
+                <CourseLight size={20 * scale} />
+              );
             } else if (route.name === 'Search') {
               return <SearchLight size={20 * scale} />;
             } else if (route.name === 'Message') {
-              return focused ? <MessageDark size={20 * scale} /> : <MessageLight size={20 * scale} />;
+              return focused ? (
+                <MessageDark size={20 * scale} />
+              ) : (
+                <MessageLight size={20 * scale} />
+              );
             } else if (route.name === 'Account') {
-              return focused ? <AccountDark size={20 * scale} /> : <AccountWhite size={20 * scale} />;
+              return focused ? (
+                <AccountDark size={20 * scale} />
+              ) : (
+                <AccountWhite size={20 * scale} />
+              );
             }
           },
           tabBarActiveTintColor: 'tomato',
@@ -99,16 +113,21 @@ function App() {
 
   const StackNavigator = () => {
     return (
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{headerShown: false}}>
         <Stack.Screen name="First" component={First} />
         <Stack.Screen name="Second" component={Second} />
         <Stack.Screen name="Third" component={Third} />
         <Stack.Screen name="Phone" component={Phone} />
-        <Stack.Screen name="Otp">{props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}</Stack.Screen>
+        <Stack.Screen name="Otp">
+          {props => <Otp {...props} setIsFirstLaunch={setIsFirstLaunch} />}
+        </Stack.Screen>
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="Login">
-        
-          {props => <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />}
+          {props => (
+            <LoginPage {...props} setIsFirstLaunch={setIsFirstLaunch} />
+          )}
         </Stack.Screen>
         <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
